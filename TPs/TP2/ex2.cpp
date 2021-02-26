@@ -90,29 +90,6 @@ int Sudoku::getCellPossibilities(int row, int col, std::vector<int> &possibiliti
     return possibilities.size();
 }
 
-/*bool Sudoku::solveBF() {
-    for (int row = 0; row < 9; row++) {
-        for (int col = 0; col < 9; col++) {
-            if (numbers[row][col] != 0) {
-                for (int i = 1; i < 9; i++) {
-                    if (accepts(row, col, i)) {
-                        place(row, col, i);
-                        if (Sudoku::solveBF()) return true;
-                        clear(row, col);
-                    }
-                }
-            }
-        }
-    }
-
-    solutions++;
-}*/
-
-int Sudoku::countSolutions() {
-    //Sudoku::solveBF();
-    return solutions;
-}
-
 void Sudoku::generate() {
 	//TODO
 }

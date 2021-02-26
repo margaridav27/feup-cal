@@ -86,8 +86,6 @@ private:
     bool lineHasNumber[9][10];
     bool block3x3HasNumber[3][3][10];
 
-    int solutions = 0;
-
     void initialize();
     /**
      * Checks if the cell at line i, column j accepts number n
@@ -112,8 +110,6 @@ private:
     bool findBestCell(int &row, int &col, std::vector<int> &possibilities);
 
     int getCellPossibilities(int row, int col, std::vector<int> &possibilities);
-
-    bool solveBF();
 };
 
 // Ex 3
