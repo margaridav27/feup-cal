@@ -19,7 +19,8 @@ private:
     int labyrinth[10][10];
     bool visited[10][10];
     void initializeVisited();
-	//TODO: Add other methods if needed
+    bool findGoalRec(int x, int y);
+    //TODO: Add other methods if needed
 };
 
 // Ex 2
@@ -58,7 +59,7 @@ public:
      *   1 if the puzzle has a unique solution,
      *   >1 if the puzzle has two or more solutions (for efficiency reasnos, it does not count all of the solutions and stops on the second one)
      */
-    int Sudoku::countSolutions();
+    int countSolutions();
     /**
      * Generates a puzzle with a unique solution and filled with as least cells as possible that ensure that the solution is unique.
      */

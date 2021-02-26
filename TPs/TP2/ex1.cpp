@@ -18,8 +18,23 @@ void  Labyrinth::print() const {
 }
 
 bool Labyrinth::findGoal(int x, int y) {
-    //TODO
-    return false;
+    Labyrinth::initializeVisited();
+    Labyrinth::findGoalRec(x, y);
+}
+
+bool Labyrinth::findGoalRec(int x, int y) {
+    //found the way out
+    if (labyrinth[x][y] == 2) return true;
+
+    //encountered a wall or tried to visit an already visited spot
+    if (labyrinth[x][y] == 0 || visited[x][y]) return false;
+
+    visited[x][y] = true;
+
+    return Labyrinth::findGoalRec(x + 1, y) //tries moving forwards
+           || Labyrinth::findGoalRec(x - 1, y) //tries moving backwards
+           || Labyrinth::findGoalRec(x, y + 1) //tries moving upwards
+           || Labyrinth::findGoalRec(x, y - 1); //tries moving downwards
 }
 
 void Labyrinth::initializeVisited() {
