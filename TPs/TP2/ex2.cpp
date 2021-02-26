@@ -118,28 +118,6 @@ bool Sudoku::accepts(int i, int j, int n) {
     return (!lineHasNumber[i][n] &&
             !columnHasNumber[j][n] &&
             !block3x3HasNumber[i / 3][j / 3][n]);
-
-    /*
-    //verifying each column
-    for (int row = 0; row < 9; row++) {
-        if (numbers[row][j] == n) { return false; }
-    }
-
-    //verifying each row
-    for (int col = 0; col < 9; col++) {
-        if (numbers[i][col] == n) { return false; }
-    }
-
-    //verifying each square
-    int sqr_start_col = (j/3)*3;
-    int sqr_start_row = (i/3)*3;
-    for (int row = sqr_start_row; row < 3 + sqr_start_row; row++) {
-        for (int col = sqr_start_col; col < 3 +sqr_start_col; col++) {
-            if (numbers[row][col] == n) { return false; }
-        }
-    }
-
-    return true;*/
 }
 
 void Sudoku::place(int i, int j, int n) {
