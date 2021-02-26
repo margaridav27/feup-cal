@@ -5,14 +5,18 @@ Sudoku::Sudoku() {
 }
 
 Sudoku::Sudoku(int nums[9][9]): Sudoku() {
+    countFilled = 0;
+
     for (int i = 0; i < 9; i++) {
         for (int j = 0; j < 9; j++) {
             if (nums[i][j] != 0) {
                 int n = nums[i][j];
-                if (n < 1 || n > 9 || !accepts(i, j, n))
+                if (n < 1 || n > 9 || !accepts(i, j, n)) {
                     throw IllegalArgumentException;
-                else
+                }
+                else {
                     place(i, j, n);
+                }
             }
         }
     }
@@ -29,21 +33,84 @@ void Sudoku::initialize() {
             }
         }
     }
-    this->countFilled = 0;
+    countFilled = 0;
 }
 
 bool Sudoku::isComplete() const {
-    return countFilled == 9 * 9;
+    return (countFilled == 9 * 9);
 }
 
 bool Sudoku::solve() {
-    //TODO
+    if (Sudoku::isComplete()) return true;
+
+    int row, col;
+    std::vector<int> possibilities;
+    if (!Sudoku::findBestCell(row, col, possibilities)) return false;
+
+    for (int i = 0; i < possibilities.size(); i++) {
+        if (accepts(row, col, possibilities[i])) {
+            place(row, col, possibilities[i]);
+            if (Sudoku::solve()) return true;
+            clear(row, col);
+        }
+    }
+
     return false;
 }
 
+bool Sudoku::findBestCell(int &row, int &col, std::vector<int> &possibilities) {
+    int bestCandidate = 10;
+    int currCandidate;
+    std::vector<int> temp;
+
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            if (numbers[i][j] == 0) {
+                currCandidate = Sudoku::getCellPossibilities(i, j, temp);
+                if (currCandidate < bestCandidate && currCandidate != 0) {
+                    bestCandidate = currCandidate;
+                    possibilities = temp;
+                    row = i;
+                    col = j;
+                }
+            }
+        }
+    }
+
+    return (!possibilities.empty());
+}
+
+int Sudoku::getCellPossibilities(int row, int col, std::vector<int> &possibilities) {
+    possibilities.clear();
+    for (int i = 1; i <= 9; i++) {
+        if (Sudoku::accepts(row, col, i)) {
+            possibilities.push_back(i);
+        }
+    }
+    return possibilities.size();
+}
+
+/*bool Sudoku::solveBF() {
+    for (int row = 0; row < 9; row++) {
+        for (int col = 0; col < 9; col++) {
+            if (numbers[row][col] != 0) {
+                for (int i = 1; i < 9; i++) {
+                    if (accepts(row, col, i)) {
+                        place(row, col, i);
+                        if (Sudoku::solveBF()) return true;
+                        clear(row, col);
+                    }
+                }
+            }
+        }
+    }
+
+    solutions++;
+}*/
+
 int Sudoku::countSolutions() {
-    //TODO
-    return 0;
+    //Sudoku::solveBF();
+    return solutions;
 }
 
 void Sudoku::generate() {
@@ -71,8 +138,31 @@ void Sudoku::print() const {
 }
 
 bool Sudoku::accepts(int i, int j, int n) {
-	//TODO
-    return false;
+    return (!lineHasNumber[i][n] &&
+            !columnHasNumber[j][n] &&
+            !block3x3HasNumber[i / 3][j / 3][n]);
+
+    /*
+    //verifying each column
+    for (int row = 0; row < 9; row++) {
+        if (numbers[row][j] == n) { return false; }
+    }
+
+    //verifying each row
+    for (int col = 0; col < 9; col++) {
+        if (numbers[i][col] == n) { return false; }
+    }
+
+    //verifying each square
+    int sqr_start_col = (j/3)*3;
+    int sqr_start_row = (i/3)*3;
+    for (int row = sqr_start_row; row < 3 + sqr_start_row; row++) {
+        for (int col = sqr_start_col; col < 3 +sqr_start_col; col++) {
+            if (numbers[row][col] == n) { return false; }
+        }
+    }
+
+    return true;*/
 }
 
 void Sudoku::place(int i, int j, int n) {
@@ -106,6 +196,7 @@ void Sudoku::clear() {
 }
 
 /// TESTS ///
+/*
 #include <gtest/gtest.h>
 
 void compareSudokus(int in[9][9], int out[9][9]) {
@@ -286,7 +377,7 @@ TEST(TP2_Ex2, testSudokuWithMinimalClues) {
 
 TEST(TP2_Ex2, testSudokuWithMultipleSolutions) {
     int in[9][9] =
-            {{0/*7*/, 0, 0, 1, 0, 8, 0, 0, 0},
+            {{0, 0, 0, 1, 0, 8, 0, 0, 0},
              {0, 9, 0, 0, 0, 0, 0, 3, 2},
              {0, 0, 0, 0, 0, 5, 0, 0, 0},
              {0, 0, 0, 0, 0, 0, 1, 0, 0},
@@ -325,7 +416,7 @@ TEST(TP2_Ex2, testSudokuEmpty) {
 TEST(TP2_Ex2, testSudokuImpossible) {
     int in[9][9] =
             {{7, 0, 0, 1, 0, 8, 0, 0, 0},
-             {4/*0*/, 9, 0, 0, 0, 0, 0, 3, 2},
+             {4, 9, 0, 0, 0, 0, 0, 3, 2},
              {0, 0, 0, 0, 0, 5, 0, 0, 0},
              {0, 0, 0, 0, 0, 0, 1, 0, 0},
              {9, 6, 0, 0, 2, 0, 0, 0, 0},
@@ -346,3 +437,4 @@ TEST(TP2_Ex2, testSudokuImpossible) {
 
     compareSudokus(in, out);
 }
+*/

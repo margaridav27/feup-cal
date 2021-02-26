@@ -44,6 +44,7 @@ void Labyrinth::initializeVisited() {
 }
 
 /// TESTS ///
+/*
 #include <gtest/gtest.h>
 
 TEST(TP2_Ex1, testLabyrinthPossible) {
@@ -80,3 +81,4 @@ TEST(TP2_Ex1, testLabyrinthImpossible) {
     Labyrinth l1(lab1);
     EXPECT_EQ(l1.findGoal(1,1),false);
 }
+*/
