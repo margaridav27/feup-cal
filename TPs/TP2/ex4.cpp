@@ -9,9 +9,26 @@ bool Activity::overlaps(const Activity &a2) const {
 }
 
 std::vector<Activity> activitySelectionBacktracking(std::vector<Activity> A) {
-    //TODO
-    return A;
+    std::vector<Activity> result;
+    activitySelectionRec(A, result, 0);
+    return result;
 }
+
+bool activitySelectionRec(std::vector<Activity> A, std::vector<Activity>& result, int i) {
+    if (A.empty()) return true;
+
+    for (Activity activity : result) {
+        if (A[i].overlaps(activity)) {
+            A.erase(A.begin() + i);
+            return activitySelectionRec(A, result, i);
+        }
+    }
+
+    result.push_back(A[i]);
+    A.erase(A.begin() + i);
+    return activitySelectionRec(A, result, i);
+}
+
 
 /// TESTS ///
 #include <gtest/gtest.h>

@@ -128,4 +128,6 @@ public:
 };
 std::vector<Activity> activitySelectionBacktracking(std::vector<Activity> A);
 
+bool activitySelectionRec(std::vector<Activity> A, std::vector<Activity>& result, int i);
+
 #endif //CAL_TP2_CLASSES_EXERCISES_H
