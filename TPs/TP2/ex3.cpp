@@ -1,9 +1,39 @@
 #include "exercises.h"
 
+bool initialized = false;
+
 bool changeMakingBacktracking(unsigned int C[], unsigned int Stock[], unsigned int n, unsigned int T, unsigned int usedCoins[]) {
-    //TODO
-	return false;
+    std::fill_n(usedCoins, n, 0);
+    changeMakingRec(C, Stock, n, T, usedCoins);
 }
+
+bool changeMakingRec(unsigned int C[], unsigned int Stock[], unsigned int n, unsigned int T, unsigned int usedCoins[]) {
+    //we found our solution
+    if (T == 0) {
+        return true;
+    }
+
+    //we are left with coins of only one type and the total amount we can make with those is less than T
+    if (n-1 == 0 && T > C[n-1] * Stock[n-1]) {
+        std::fill_n(usedCoins, n, 0);
+        return false;
+    }
+
+    //the value of the type of coins we are currently looking at is greater than T or we run out of stock for that type
+    if (C[n-1] > T || Stock[n-1] == 0) {
+
+        //so let's start trying with the type of coins immediately before in terms of value
+        //notice that this only works if the array Stock is sorted, so we are assuming that
+        return changeMakingRec(C, Stock,n-1, T, usedCoins);
+    }
+
+    //passed all the conditions, so we can keep looking at the same type of coins
+    T -= C[n-1];
+    Stock[n-1]--;
+    usedCoins[n-1]++;
+    return changeMakingRec(C, Stock, n, T, usedCoins);
+}
+
 
 /// TESTS ///
 #include <gtest/gtest.h>

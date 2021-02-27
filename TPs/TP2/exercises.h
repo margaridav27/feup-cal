@@ -115,6 +115,8 @@ private:
 // Ex 3
 bool changeMakingBacktracking(unsigned int C[], unsigned int Stock[], unsigned int n, unsigned int T, unsigned int usedCoins[]);
 
+bool changeMakingRec(unsigned int C[], unsigned int Stock[], unsigned int n, unsigned int T, unsigned int usedCoins[]);
+
 // Ex 4
 class Activity {
 public:
