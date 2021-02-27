@@ -15,6 +15,8 @@ bool changeMakingRec(unsigned int C[], unsigned int Stock[], unsigned int n, uns
 
     //we are left with coins of only one type and the total amount we can make with those is less than T
     if (n-1 == 0 && T > C[n-1] * Stock[n-1]) {
+
+        //since we are not going anywhere with this attempt and before we can restart our search, we first need to reset the array usedCoins
         std::fill_n(usedCoins, n, 0);
         return false;
     }
