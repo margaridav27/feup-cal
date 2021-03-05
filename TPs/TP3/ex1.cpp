@@ -146,7 +146,9 @@ void nearestPointsRec(std::vector<Point> &vpX, std::vector<Point> &vpY, Result &
 
     for (int i = 0; i < vpY.size(); i++) {
         for (int j = i + 1; j < vpY.size(); j++) {
-            if (std::abs(vpY[i].y - vpY[j].y) > res.dmin) {
+            if (std::abs(vpX[i].x - vpX[i].x) > res.dmin) { // with 1st and 2nd conditions, we make sure to only test point that are in the stripe
+                break;
+            } else if (std::abs(vpY[i].y - vpY[j].y) > res.dmin) {
                 break;
             } else if (vpY[i].distance(vpY[j]) < res.dmin) {
                 res = Result(vpY[i].distance(vpY[j]), vpY[i], vpY[j]);
@@ -327,8 +329,6 @@ void testNearestPoints(NP_FUNC func, std::string alg) {
         return;
     if (testNPFile("Pontos16k", 13.0384, func, alg) > maxTime)
         return;
-    /*
-    // Uncomment to use more tests
     if (testNPFile("Pontos32k", 1.0, func, alg) > maxTime)
         return;
     if (testNPFile("Pontos64k", 1.0, func, alg) > maxTime)
@@ -343,7 +343,7 @@ void testNearestPoints(NP_FUNC func, std::string alg) {
         return;
     if ( testNPRand(0x200000, "Pontos2M",  1.0, func, alg) > maxTime)
         return;
-    */
+
 }
 
 TEST(TP3_Ex1, testNP_BF) {
