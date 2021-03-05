@@ -43,6 +43,14 @@ Result nearestPoints_DC_MT(std::vector<Point> &vp);
 typedef Result (*NP_FUNC)(std::vector<Point> &vp);
 
 // Ex 2
+typedef struct {
+    int left, right, maxSum;
+} tuple;
+
 int maxSubsequenceDC(int A[], unsigned int n, int &i, int &j);
+
+tuple maxCrossingSubsequence(int A[], int low, int mid, int high);
+
+tuple maxSubsequenceRec(int A[], int low, int high);
 
 #endif //CAL_TP3_CLASSES_EXERCISES_H

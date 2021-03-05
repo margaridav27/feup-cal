@@ -1,8 +1,65 @@
+#include <algorithm>
 #include "exercises.h"
+#include "limits.h"
+
+//https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf
+//pags 70-72, thank me later
 
 int maxSubsequenceDC(int A[], unsigned int n, int &i, int &j) {
-    //TODO
-	return 0;
+    i = 0; j = (int)n-1;
+
+    tuple result = maxSubsequenceRec(A, i, j);
+
+    i = result.left; j = result.right;
+
+	return result.maxSum;
+}
+
+tuple maxCrossingSubsequence(int A[], int low, int mid, int high) {
+    int sum = 0;
+    int maxLeftSum = INT_MIN;
+    int maxLeft = mid;
+    for (int a = mid; a >= low; --a){
+        sum += A[a];
+        if (sum > maxLeftSum){
+            maxLeftSum = sum;
+            maxLeft = a;
+        }
+    }
+
+    sum = 0;
+    int maxRightSum = INT_MIN;
+    int maxRight = mid + 1;
+    for (int b = mid + 1; b <= high; ++b){
+        sum += A[b];
+        if (sum > maxRightSum){
+            maxRightSum = sum;
+            maxRight = b;
+        }
+    }
+
+    tuple result = { .left = maxLeft, .right = maxRight, .maxSum = maxLeftSum + maxRightSum };
+    return result;
+}
+
+tuple maxSubsequenceRec(int A[], int low, int high) {
+    if (low == high) {
+        tuple result = { .left = low, .right = high, .maxSum = A[low] };
+        return result;
+    } else {
+        int mid = (low + high) / 2;
+        tuple left = maxSubsequenceRec(A, low, mid);
+        tuple right = maxSubsequenceRec(A, mid + 1, high);
+        tuple cross = maxCrossingSubsequence(A, low, mid, high);
+
+        if (left.maxSum >= right.maxSum && left.maxSum >= cross.maxSum) {
+            return left;
+        } else if (right.maxSum >= left.maxSum && right.maxSum >= cross.maxSum) {
+            return right;
+        } else {
+            return cross;
+        }
+    }
 }
 
 /// TESTS ///
