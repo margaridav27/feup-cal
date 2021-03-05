@@ -2,8 +2,9 @@
 #include "exercises.h"
 #include "limits.h"
 
-//https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf
-//pags 70-72, thank me later
+// https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf
+// see chapter 4 section 4.1 - pages 70-72, thank me later
+// also see tuple implementation on exercises.h
 
 int maxSubsequenceDC(int A[], unsigned int n, int &i, int &j) {
     i = 0; j = (int)n-1;
