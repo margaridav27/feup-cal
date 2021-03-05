@@ -61,22 +61,98 @@ static void sortByY(std::vector<Point> &v, int left, int right) {
 
 Result nearestPoints_BF(std::vector<Point> &vp) {
     Result res;
-    //TODO
+    res.dmin = MAX_DOUBLE;
+
+    for (int i = 0; i < vp.size(); i++) {
+        for (int j = i + 1; j < vp.size(); j++) {
+            if (vp[i].distance(vp[j]) < res.dmin) {
+                res.dmin = vp[i].distance(vp[j]);
+                res.p1 = vp[i];
+                res.p2 = vp[j];
+            }
+        }
+    }
+
     return res;
 }
 
 Result nearestPoints_BF_SortByX(std::vector<Point> &vp) {
-    Result res;
     sortByX(vp, 0, vp.size()-1);
-    //TODO
+
+    Result res;
+    res.dmin = MAX_DOUBLE;
+
+    for (int i = 0; i < vp.size(); i++) {
+        for (int j = i + 1; j < vp.size(); j++) {
+            if (vp[i].distance(vp[j]) < res.dmin) {
+                res.dmin = vp[i].distance(vp[j]);
+                res.p1 = vp[i];
+                res.p2 = vp[j];
+            } else if (std::abs(vp[i].x - vp[j].x) > res.dmin) {
+                break; // since we know the points are sorted by X axis, we don't need to iterate any further
+            }
+        }
+    }
+
     return res;
 }
 
 Result nearestPoints_DC(std::vector<Point> &vp) {
     Result res;
-    sortByX(vp, 0, vp.size()-1);
-    //TODO
+    res.dmin = MAX_DOUBLE;
+
+    std::vector<Point> vpX = vp; // set of points sorted by X axis
+    sortByX(vpX, 0, vp.size() - 1);
+
+    std::vector<Point> vpY = vp; // set of points sorted by Y axis
+    sortByY(vpY, 0, vp.size() - 1);
+
+    nearestPointsRec(vpX, vpY, res, 0, vp.size() - 1);
+
     return res;
+}
+
+void nearestPointsRec(std::vector<Point> &vpX, std::vector<Point> &vpY, Result &res, int leftBound, int rightBound) {
+    // in order to better understand the algorithm implemented i really recommend you to read the problem statement
+
+    if (rightBound - leftBound <= 2) {
+        for (int i = leftBound; i < rightBound; i++) {
+            for (int j = i + 1; j < rightBound; j++) {
+                if (vpX[i].distance(vpX[j]) < res.dmin) {
+                    res = Result(vpX[i].distance(vpX[j]), vpX[i], vpX[j]);
+                }
+            }
+        }
+        return;
+    }
+
+    int middle = (leftBound + rightBound) / 2; // defining the middle "barrier" that divides the sets of points into two
+
+    /* in order to find the closest pair of points, we can start by finding the closest pair of points on each side of the barrier
+       let dL be the minimum distance on the left side and dR the minimum distance on the right side */
+
+    nearestPointsRec(vpX, vpY, res, leftBound, middle); // calculating dL
+    nearestPointsRec(vpX, vpY, res, middle + 1, rightBound); // calculating dR
+
+    /* therefore, the minimum distance, d = res.dmin, will be min(dL, dR)
+
+       now, let dC be the minimum distance between two points, intersecting the middle barrier
+       after calculating d, one only has to compute dC, if it is smaller than d
+       with this in mind, it can be said that the two points which will possibly define dC must be less than d distance from the barrier
+
+       let the stripe be the area defined by ]middle - d, middle + d[
+       if we sort the points in the stripe by their y coordinate, we know that y of vpY[i] and y of vpY[j] can't differ more than d
+       and so, if they do, the algorithm skips to the next point */
+
+    for (int i = 0; i < vpY.size(); i++) {
+        for (int j = i + 1; j < vpY.size(); j++) {
+            if (std::abs(vpY[i].y - vpY[j].y) > res.dmin) {
+                break;
+            } else if (vpY[i].distance(vpY[j]) < res.dmin) {
+                res = Result(vpY[i].distance(vpY[j]), vpY[i], vpY[j]);
+            }
+        }
+    }
 }
 
 Result nearestPoints_DC_MT(std::vector<Point> &vp) {

@@ -36,6 +36,7 @@ Result nearestPoints_BF(std::vector<Point> &vp);
 Result nearestPoints_BF_SortByX(std::vector<Point> &vp);
 // Divide-and-conquer with a single thread
 Result nearestPoints_DC(std::vector<Point> &vp);
+void nearestPointsRec(std::vector<Point> &vpX, std::vector<Point> &vpY, Result &res, int leftBound, int rightBound);
 // Divide-and-conquer with multiple threads (number of threads is set using setNumThreads).
 Result nearestPoints_DC_MT(std::vector<Point> &vp);
 
