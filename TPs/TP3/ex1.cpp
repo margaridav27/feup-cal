@@ -142,7 +142,12 @@ void nearestPointsRec(std::vector<Point> &vpX, std::vector<Point> &vpY, Result &
 
        let the stripe be the area defined by ]middle - d, middle + d[
        if we sort the points in the stripe by their y coordinate, we know that y of vpY[i] and y of vpY[j] can't differ more than d
-       and so, if they do, the algorithm skips to the next point */
+       and so, if they do, the algorithm skips to the next point
+
+       also, notice that we are not actually defining any stripe area
+       however, with the first two conditions in the code section below we achieve the same efficiency as if we were actually defining it
+       since, despite what it looks like, we will not be iterating over every single point
+       */
 
     for (int i = 0; i < vpY.size(); i++) {
         for (int j = i + 1; j < vpY.size(); j++) {
