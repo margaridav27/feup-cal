@@ -170,6 +170,7 @@ Result nearestPoints_DC_MT(std::vector<Point> &vp) {
 }
 
 /// TESTS ///
+
 #include <gtest/gtest.h>
 #include <fstream>
 #include <time.h>
@@ -348,7 +349,6 @@ void testNearestPoints(NP_FUNC func, std::string alg) {
         return;
     if ( testNPRand(0x200000, "Pontos2M",  1.0, func, alg) > maxTime)
         return;
-
 }
 
 TEST(TP3_Ex1, testNP_BF) {

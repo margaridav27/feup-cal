@@ -21,7 +21,7 @@ bool changeMakingGreedy(unsigned int C[], unsigned int Stock[], unsigned int n, 
 
 
 /// TESTS ///
-/*
+
 #include <gtest/gtest.h>
 
 TEST(TP1_Ex4, hasGreedyChange) {
@@ -53,4 +53,3 @@ TEST(TP1_Ex4, hasNoGreedyChange) {
     EXPECT_EQ(changeMakingGreedy(C,Stock,n,18,usedCoins), false);
     EXPECT_EQ(changeMakingGreedy(C,Stock,n,1,usedCoins), false);
 }
-*/

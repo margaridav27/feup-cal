@@ -64,7 +64,7 @@ tuple maxSubsequenceRec(int A[], int low, int high) {
 }
 
 /// TESTS ///
-/*
+
 #include <gtest/gtest.h>
 
 TEST(TP3_Ex2, testMaxSubsequence) {
@@ -93,4 +93,3 @@ TEST(TP3_Ex2, testMaxSubsequence) {
     EXPECT_EQ(i, 3);
     EXPECT_EQ(j, 6);
 }
-*/

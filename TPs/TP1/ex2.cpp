@@ -23,7 +23,7 @@ int maxSubsequence(int A[], unsigned int n, unsigned int &i, unsigned int &j) {
 
 
 /// TESTS ///
-/*
+
 #include <gtest/gtest.h>
 
 TEST(TP1_Ex2, maxSubsequence) {
@@ -34,4 +34,3 @@ TEST(TP1_Ex2, maxSubsequence) {
     EXPECT_EQ(i, 3);
     EXPECT_EQ(j, 6);
 }
-*/

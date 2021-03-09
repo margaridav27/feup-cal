@@ -35,7 +35,7 @@ bool isCanonical(unsigned int C[], unsigned int n) {
 
 
 /// TESTS ///
-/*
+
 #include <gtest/gtest.h>
 
 TEST(TP1_Ex5, canonicalTrue) {
@@ -50,4 +50,3 @@ TEST(TP1_Ex5, canonicalFalse) {
     unsigned int C[] = {1,4,5};
     EXPECT_EQ(isCanonical(C,3), true);
 }
-*/

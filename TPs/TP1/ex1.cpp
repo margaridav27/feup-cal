@@ -33,7 +33,7 @@ bool sum3_a(unsigned int T, unsigned int nums[3]) {
 }
 
 /// TESTS ///
-/*
+
 #include <gtest/gtest.h>
 
 void compareSums(unsigned int selected[3], unsigned int expectedSum) {
@@ -58,4 +58,3 @@ TEST(TP1_Ex1, 3sumNotExists) {
     unsigned int T = 1;
     EXPECT_EQ(sum3(T,selected), false);
 }
-*/

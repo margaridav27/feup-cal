@@ -41,3 +41,18 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
   file(TOUCH_NOCREATE "C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/CMakeFiles/cmake.verify_globs")
 endif()
+
+# TP4_FILES at CMakeLists.txt:18 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP4/*.cpp")
+set(OLD_GLOB
+  "C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP4/ex1.cpp"
+  "C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP4/ex2.cpp"
+  "C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP4/ex3.cpp"
+  "C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP4/ex4.cpp"
+  "C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP4/ex5.cpp"
+  "C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP4/ex6.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/CMakeFiles/cmake.verify_globs")
+endif()

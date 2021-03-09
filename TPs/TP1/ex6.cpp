@@ -45,7 +45,7 @@ std::vector<Activity> earliestFinishScheduling(std::vector<Activity> A) {
 }
 
 /// TESTS ///
-/*
+
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
@@ -55,4 +55,3 @@ TEST(TP1_Ex6, activityScheduling) {
     EXPECT_EQ(V.size(), 3 );
     ASSERT_THAT(earliestFinishScheduling(A),  ::testing::ElementsAre(Activity(5, 15), Activity(30, 35), Activity(40, 50)));
 }
-*/

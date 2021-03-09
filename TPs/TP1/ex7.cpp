@@ -20,7 +20,7 @@ double minimumAverageCompletionTime(std::vector<unsigned int> tasks, std::vector
 }
 
 /// TESTS ///
-/*
+
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
@@ -32,4 +32,3 @@ TEST(TP1_Ex7, taskOrdering) {
     ASSERT_NEAR(averageTime, 17.75, 0.00001);
     ASSERT_THAT(orderedTasks,  ::testing::ElementsAre(3,8,10,15));
 }
-*/

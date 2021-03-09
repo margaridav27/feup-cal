@@ -151,7 +151,7 @@ void Sudoku::clear() {
 }
 
 /// TESTS ///
-/*
+
 #include <gtest/gtest.h>
 
 void compareSudokus(int in[9][9], int out[9][9]) {
@@ -392,4 +392,3 @@ TEST(TP2_Ex2, testSudokuImpossible) {
 
     compareSudokus(in, out);
 }
-*/

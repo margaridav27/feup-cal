@@ -51,7 +51,7 @@ bool changeMakingBF(unsigned int C[], unsigned int Stock[], unsigned int n, unsi
 }
 
 /// TESTS ///
-/*
+
 #include <gtest/gtest.h>
 
 TEST(TP1_Ex3, hasBFChangeCanonical) {
@@ -118,4 +118,3 @@ TEST(TP1_Ex3, hasNoBFChange) {
     EXPECT_EQ(changeMakingBF(C,Stock,n,18,usedCoins), false);
     EXPECT_EQ(changeMakingBF(C,Stock,n,1,usedCoins), false);
 }
-*/

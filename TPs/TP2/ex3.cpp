@@ -38,7 +38,7 @@ bool changeMakingRec(unsigned int C[], unsigned int Stock[], unsigned int n, uns
 
 
 /// TESTS ///
-/*
+
 #include <gtest/gtest.h>
 
 TEST(TP2_Ex3, hasBFChangeCanonical) {
@@ -105,4 +105,3 @@ TEST(TP2_Ex3, hasNoBFChange) {
     EXPECT_EQ(changeMakingBacktracking(C,Stock,n,18,usedCoins), false);
     EXPECT_EQ(changeMakingBacktracking(C,Stock,n,1,usedCoins), false);
 }
-*/
