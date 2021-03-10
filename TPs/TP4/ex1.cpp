@@ -1,13 +1,17 @@
 #include "exercises.h"
 
 unsigned long factorialRecurs(unsigned long n) {
-    //TODO
-    return 0;
+    if (n == 0) return 1;
+    return n * factorialRecurs(n - 1);
 }
 
 unsigned long factorialDP(unsigned long n) {
-    //TODO
-    return 0;
+    unsigned long res = 1;
+    while (n > 0) {
+        res *= n;
+        n--;
+    }
+    return res;
 }
 
 /// TESTS ///

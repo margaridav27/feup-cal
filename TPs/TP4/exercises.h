@@ -3,7 +3,9 @@
 #ifndef CAL_TP4_CLASSES_EXERCISES_H
 #define CAL_TP4_CLASSES_EXERCISES_H
 
+#include <iostream>
 #include <string>
+#include <vector>
 
 // Ex 1
 // Recursive version
@@ -13,6 +15,7 @@ unsigned long factorialDP(unsigned long n);
 
 // Ex 2
 bool changeMakingUnlimitedDP(unsigned int C[], unsigned int n, unsigned int T, unsigned int usedCoins[]);
+bool changeRec(std::vector<unsigned int> C, unsigned int n, unsigned int T, unsigned int usedCoins[], unsigned int currUsedCoins[], int& bestNumCoins, int currNumCoins);
 
 // Ex 3
 bool changeMakingDP(unsigned int C[], unsigned int Stock[], unsigned int n, unsigned int T, unsigned int usedCoins[]);
