@@ -9,13 +9,34 @@ bool changeMakingUnlimitedDP(unsigned int C[], unsigned int n, unsigned int T, u
     v[0] = 0;
     for (int i = 1; i <= n; i++) { v[i] = C[i - 1]; }
 
-    unsigned int nC[T + 1];
-    nC[0] = 0;
-    for (int k = 1; k <= T; k++) { nC[k] = T + 1; }
+    unsigned int nC[n + 1][T + 1];
+    nC[0][0] = 0;
+    for (int i = 0; i <= n; i++) { nC[i][0] = 0; }
+    for (int k = 1; k <= T; k++) { nC[0][k] = T + 1; }
 
-    unsigned int P[T + 1];
-    std::fill_n(P, T + 1, 0);
+    unsigned int P[n + 1][T + 1];
+    for (int i = 0; i <= n; i++) { nC[i][0] = 0; }
+    for (int k = 1; k <= T; k++) { nC[0][k] = 0; }
 
+    for (int i = 1; i <= n; i++) {
+        for (int k = 1; k <= v[i] - 1; k++) {
+            nC[i][k] = nC[i - 1][k];
+            P[i][k] = P[i - 1][k];
+        }
+    }
+
+    for (int i = 1; i <= n; i++) {
+        for (int k = v[i]; k <= T; k++) {
+            if (nC[i - 1][k] < 1 + nC[i][k - v[i]]) {
+                P[i][k] = P[i - 1][k];
+            } else {
+                P[i][k] = i;
+            }
+            //nC[i][k] = std::min(nC[i - 1][k], 1 + nC[i][k - v[i]]);
+        }
+    }
+
+    /*
     for (int i = 1; i <= n; i++) {
         for (int k = v[i] - 1; k <= T; k++) {
             if (1 + nC[k - v[i - 1]] < nC[k]) {
@@ -25,12 +46,12 @@ bool changeMakingUnlimitedDP(unsigned int C[], unsigned int n, unsigned int T, u
         }
     }
 
-   // if (nC[T] == T + 1) return false;
-   // else {
+      if (nC[T] == T + 1) return false;
+      else {
         for (int k = T; k > 0; k -= v[P[k] - 1]) {
             std::cout << "used: " << v[P[k] - 1] << "\t";
         } std::cout << "\n";
-        /*
+
         for (int k = T; k > 0; k = k - v[P[k] - 1]) {
             for (int c = 0; c < n; c++) {
                 if (C[c] == v[P[k] - 1]) {
@@ -38,8 +59,8 @@ bool changeMakingUnlimitedDP(unsigned int C[], unsigned int n, unsigned int T, u
                 }
             }
         }
-         */
-   // }
+
+      }*/
     return true;
 }
 
