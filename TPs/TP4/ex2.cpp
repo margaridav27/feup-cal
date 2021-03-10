@@ -1,66 +1,70 @@
 #include "exercises.h"
+#include <unordered_map>
 
-#define INF 1e10
+/* so, we start by considering not using any of the coins at all
+* following that strategy, every index of c would be an infinite number, since to make any amount with no coins, at the limit, we would need an infinite amount of coins
+* at the same time, every index of p would be zero since we can consider to be using a special coin of value '0'
+*
+* so at each iteration, we introduce a new coin to the set of coins we were previously considering
+* and we ask ourselves if by using that coin we are decreasing the amount of coins we need, relatively to the amount we would need by not using it
+*
+* and so, at the very 1st iteration, we are now considering the set of coins to be {1}
+* we can immediately realise that, if we decide to use the '1' coin, we now have 1 possibility to make change for every k in [0, T]
+* which, guess what, is just by using k '1' coins, for each k
+*
+* k =  0   1   2   3   4   5   6   -> amount we are considering
+* c    0   1   2   3   4   5   6   -> how many coins we need to make change we have if we use the coin we just added to our set
+* p    0   1   1   1   1   1   1   -> the coin we used last
+*
+* at the 2nd iteration, we are now considering the set of coins to be {1, 4}
+* if we decide to use the '4' coin, are we able to make change using less coins?
+* notice that we just need to start at the k value correspondent to the one of the coin, since we wouldn't ever be able to make a change equal to 2 using a '4' coin
+* for example, notice that, when trying to make a change equal to 4, if we decide to use the '4' coin, we now just need 1 coin,
+* which is less 3 coins when comparing to how many we would need if we would just use '1' coins, as we were previously doing
+*
+* k =  0   1   2   3   4   5   6   -> amount we are considering
+* c    0   1   2   3   1   2   3   -> how many coins we need to make change we have if we use the coin we just added to our set
+* p    0   1   1   1   4   4   4   -> the coin we used last
+*
+* and so and so on...
+* the idea is that if, for each k in [0, T], we guarantee an optimal solution which mean using the fewest coins possible
+* when we arrive at T, in the last iteration, we know for sure that we have a globally optimal solution for that amount
+* and then, to know the coins we used, we just need to sort of backtrack
+*
+* what i mean by that is, for example, to make a change of 6, we will end with a '5' coin at index T of p, which means we used the coin, so let's... use it!
+* we now have to make a change of 1, and if we look at index 1 of p, we know that the optimal solution to make change for that amount is by using a '1' coin
+* and if we use it, we now have to make a change of 0 and, in this case, we are done!
+* but you got the point...
+*/
 
 bool changeMakingUnlimitedDP(unsigned int C[], unsigned int n, unsigned int T, unsigned int usedCoins[]) {
     std::fill_n(usedCoins, n, 0);
 
-    unsigned int v[n + 1];
-    v[0] = 0;
-    for (int i = 1; i <= n; i++) { v[i] = C[i - 1]; }
+    //represents the possibilities by using the set of coins correspondent to the iteration
+    std::vector<int> c(T+1, T+1); c[0] = 0;
 
-    unsigned int nC[n + 1][T + 1];
-    nC[0][0] = 0;
-    for (int i = 0; i <= n; i++) { nC[i][0] = 0; }
-    for (int k = 1; k <= T; k++) { nC[0][k] = T + 1; }
-
-    unsigned int P[n + 1][T + 1];
-    for (int i = 0; i <= n; i++) { nC[i][0] = 0; }
-    for (int k = 1; k <= T; k++) { nC[0][k] = 0; }
+    //saves the last coin used to make the k amount
+    int p[T+1]; p[0] = 0;
 
     for (int i = 1; i <= n; i++) {
-        for (int k = 1; k <= v[i] - 1; k++) {
-            nC[i][k] = nC[i - 1][k];
-            P[i][k] = P[i - 1][k];
-        }
-    }
-
-    for (int i = 1; i <= n; i++) {
-        for (int k = v[i]; k <= T; k++) {
-            if (nC[i - 1][k] < 1 + nC[i][k - v[i]]) {
-                P[i][k] = P[i - 1][k];
-            } else {
-                P[i][k] = i;
-            }
-            //nC[i][k] = std::min(nC[i - 1][k], 1 + nC[i][k - v[i]]);
-        }
-    }
-
-    /*
-    for (int i = 1; i <= n; i++) {
-        for (int k = v[i] - 1; k <= T; k++) {
-            if (1 + nC[k - v[i - 1]] < nC[k]) {
-                nC[k] = 1 + nC[k - v[i - 1]];
-                P[k] = i;
+        for (int k = C[i - 1]; k <= T; k++) {
+            if (c[k - C[i - 1]] + 1 < c[k]) { //in this step we decide whether to use the coin or not
+                c[k] = 1 + c[k - C[i - 1]];
+                p[k] = C[i - 1];
             }
         }
     }
 
-      if (nC[T] == T + 1) return false;
-      else {
-        for (int k = T; k > 0; k -= v[P[k] - 1]) {
-            std::cout << "used: " << v[P[k] - 1] << "\t";
-        } std::cout << "\n";
+    if(c[T] > T) return false;
 
-        for (int k = T; k > 0; k = k - v[P[k] - 1]) {
-            for (int c = 0; c < n; c++) {
-                if (C[c] == v[P[k] - 1]) {
-                    usedCoins[c]++;
-                }
-            }
-        }
+    std::unordered_map<int, int> mp;
+    for (int i = 0; i < n; ++i) {
+        mp.insert(std::make_pair(C[i], i));
+    }
+    for (int i = T; i > 0; i -= p[i]) {
+        usedCoins[mp.at(p[i])]++;
+    }
 
-      }*/
     return true;
 }
 
@@ -100,7 +104,7 @@ TEST(TP4_Ex2, hasChangeNonCanonical) {
     EXPECT_EQ(usedCoins[0], 1);
     EXPECT_EQ(usedCoins[1], 0);
     EXPECT_EQ(usedCoins[2], 1);
-/*
+
     EXPECT_EQ(changeMakingUnlimitedDP(C,n,8,usedCoins), true);
     EXPECT_EQ(usedCoins[0], 0);
     EXPECT_EQ(usedCoins[1], 2);
@@ -109,7 +113,7 @@ TEST(TP4_Ex2, hasChangeNonCanonical) {
     EXPECT_EQ(changeMakingUnlimitedDP(C,n,7,usedCoins), true);
     EXPECT_EQ(usedCoins[0], 2);
     EXPECT_EQ(usedCoins[1], 0);
-    EXPECT_EQ(usedCoins[2], 1);*/
+    EXPECT_EQ(usedCoins[2], 1);
 }
 
 TEST(TP4_Ex2, hasNoChange) {
