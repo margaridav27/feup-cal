@@ -1,8 +1,64 @@
 #include "exercises.h"
+#include <unordered_map>
+
+bool allowedByStock(unsigned int C[], unsigned int Stock[], int p[], unsigned int n, int i, int k) {
+    std::unordered_map<int, int> mp;
+    for (int i = 0; i < n; ++i) {
+        mp.insert(std::make_pair(C[i], i));
+    }
+
+    unsigned int tempUsedCoins[n];
+    std::fill_n(tempUsedCoins, n, 0);
+
+    int pOldVal = p[k];
+    p[k] = C[i - 1]; //using the coin
+
+    for (int i = k; i > 0; i -= p[i]) { //filling the usedCoins temporary array
+        tempUsedCoins[mp.at(p[i])]++;
+    }
+
+    for (int i = 0; i < n; i++) {
+        if (tempUsedCoins[i] > Stock[i])  { //there is at least one coin of which the stock we exceeded
+            p[k] = pOldVal;
+            return false;
+        }
+    }
+
+    p[k] = pOldVal; //restoring the value (it will be set again in the main function)
+    return true;
+}
 
 bool changeMakingDP(unsigned int C[], unsigned int Stock[], unsigned int n, unsigned int T, unsigned int usedCoins[]) {
-    // TODO
-	return false;
+    std::fill_n(usedCoins, n, 0);
+
+    //represents the needed amount of coins by using the coin introduced in the current iteration
+    std::vector<int> c(T+1, T+1); c[0] = 0;
+
+    //saves the last coin used to make the k amount
+    int p[T+1]; p[0] = 0;
+
+    for (int i = 1; i <= n; i++) {
+        for (int k = C[i - 1]; k <= T; k++) {
+            if (c[k - C[i - 1]] + 1 < c[k]) { //in this step we decide whether to use the coin or not
+                if (allowedByStock(C, Stock, p, n, i, k)) { //we would benefit of using the coin, but if we do, is there enough stock?
+                    c[k] = 1 + c[k - C[i - 1]];
+                    p[k] = C[i - 1];
+                }
+            }
+        }
+    }
+
+    if(c[T] > T) return false;
+
+    std::unordered_map<int, int> mp;
+    for (int i = 0; i < n; ++i) {
+        mp.insert(std::make_pair(C[i], i));
+    }
+    for (int i = T; i > 0; i -= p[i]) {
+        usedCoins[mp.at(p[i])]++;
+    }
+
+    return true;
 }
 
 /// TESTS ///
