@@ -12,13 +12,12 @@ unsigned long b_recursive(unsigned int n) {
 }
 
 unsigned long s_dynamic(unsigned int n, unsigned int k) {
-
     int c[n-k+1];
-    std::fill_n(c, n+1, 1);
+    std::fill_n(c, n-k+1, 1);
 
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= n-k; j++) {
-            c[j] = c[j-1];
+    for (int i = 1; i <= k; i++) {
+        for (int j = i; j <= n-k; j++) {
+            c[j] += c[j-1];
         }
     }
 
