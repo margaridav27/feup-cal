@@ -1,8 +1,36 @@
 #include "exercises.h"
+#include <sstream>
+
+int sumArray(int sequence[], int i, int m) {
+    int sum = 0;
+    for (int k = i; k < i + m; k++) {
+        sum += sequence[k];
+    }
+    return sum;
+}
 
 std::string calcSum(int sequence[], unsigned long n) {
-    // TODO
-    return "";
+    std::string res;
+    std::stringstream sstr(res);
+
+    for (int m = 1; m <= n; m++) {
+
+        std::cout << "subarray of size " << m << "\n\n";
+        int minSum = INT_MAX;
+        int minSumIndex = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (i + m > n) break;
+
+            int sum = sumArray(sequence, i, m);
+            if (sum < minSum) {
+                minSum = sum;
+                minSumIndex = i;
+            }
+        }
+        sstr << minSum << "," << minSumIndex << ";";
+    }
+    return sstr.str();
 }
 
 void testPerformanceCalcSum() {
