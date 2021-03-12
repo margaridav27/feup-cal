@@ -1,23 +1,34 @@
 #include "exercises.h"
 
 unsigned long s_recursive(unsigned int n, unsigned int k) {
-    // TODO
-    return 0;
+    if (k == 1 || k == n) return 1;
+    return s_recursive(n-1, k-1) + k * s_recursive(n-1, k);
 }
 
 unsigned long b_recursive(unsigned int n) {
-    // TODO
-    return 0;
+    int res = 0;
+    for (int k = 1; k <= n; k++) res += s_recursive(n, k);
+    return res;
 }
 
 unsigned long s_dynamic(unsigned int n, unsigned int k) {
-    // TODO
-    return 0;
+
+    int c[n-k+1];
+    std::fill_n(c, n+1, 1);
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n-k; j++) {
+            c[j] = c[j-1];
+        }
+    }
+
+    return c[n-k];
 }
 
 unsigned long b_dynamic(unsigned int n) {
-    // TODO
-    return 0;
+    int res = 0;
+    for (int k = 1; k <= n; k++) res += s_dynamic(n, k);
+    return res;
 }
 
 /// TESTS ///
