@@ -1,8 +1,33 @@
 #include "exercises.h"
 
 int maxSubsequenceDP(int A[], unsigned int n, unsigned int &i, unsigned int &j) {
-    // TODO
-    return 0;
+    // adapted from kadane's algorithm
+
+    int globalMax = INT_MIN;
+    int localMax = 0;
+    unsigned iLocal = 0, jLocal = 0;
+    unsigned iGlobal = 0, jGlobal = 0;
+
+    for(unsigned k = 0; k < n; k++){
+        if (A[k] > localMax + A[k]) {
+            iLocal = k;
+            jLocal = k;
+            localMax = A[k];
+        } else {
+            jLocal = k;
+            localMax += A[k];
+        }
+
+        if (localMax > globalMax) {
+            iGlobal = iLocal;
+            jGlobal = jLocal;
+            globalMax = localMax;
+        }
+    }
+
+    i = iGlobal;
+    j = jGlobal;
+    return globalMax;
 }
 
 int maxSubsequenceBF(int A[], unsigned int n, unsigned int &i, unsigned int &j) {
@@ -50,5 +75,5 @@ TEST(TP4_Ex6, testMaxSubsequence) {
     EXPECT_EQ(i, 3);
     EXPECT_EQ(j, 6);
 
-    testPerformanceMaxSubsequence();
+    //testPerformanceMaxSubsequence();
 }
