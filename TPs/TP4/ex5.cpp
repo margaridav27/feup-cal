@@ -12,6 +12,18 @@ unsigned long b_recursive(unsigned int n) {
 }
 
 unsigned long s_dynamic(unsigned int n, unsigned int k) {
+    unsigned int s[n + 1][k + 1];
+    for (unsigned int i = 0; i <= n; i++) { std::fill_n(s[i], k + 1, 1); }
+
+    for (unsigned int i = 1; i <= n; i++) {
+        for (unsigned int j = 2; j <= std::min(k, i - 1); j++) {
+            s[i][j] = s[i - 1][j - 1] + j * s[i - 1][j];
+        }
+    }
+
+    return s[n][k];
+
+    /* was on UC slides but this shit does not work, blame Rossetti
     int c[n-k+1];
     std::fill_n(c, n-k+1, 1);
 
@@ -21,7 +33,7 @@ unsigned long s_dynamic(unsigned int n, unsigned int k) {
         }
     }
 
-    return c[n-k];
+    return c[n-k];*/
 }
 
 unsigned long b_dynamic(unsigned int n) {
