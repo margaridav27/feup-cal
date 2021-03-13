@@ -5,28 +5,30 @@ bool changeMakingUnlimitedDP(unsigned int C[], unsigned int n, unsigned int T, u
     std::fill_n(usedCoins, n, 0);
 
     //represents the possibilities by using the set of coins correspondent to the iteration
-    std::vector<int> c(T+1, T+1); c[0] = 0;
+    std::vector<int> minCoinsNeeded(T + 1, T + 1);
+    minCoinsNeeded[0] = 0;
 
     //saves the last coin used to make the k amount
-    int p[T+1]; p[0] = 0;
+    int coinsUsedLast[T+1];
+    std::fill_n(coinsUsedLast, T + 1, 0);
 
     for (int i = 1; i <= n; i++) {
         for (int k = C[i - 1]; k <= T; k++) {
-            if (c[k - C[i - 1]] + 1 < c[k]) { //in this step we decide whether to use the coin or not
-                c[k] = 1 + c[k - C[i - 1]];
-                p[k] = C[i - 1];
+            if (minCoinsNeeded[k - C[i - 1]] + 1 < minCoinsNeeded[k]) { //in this step we decide whether to use the coin or not
+                minCoinsNeeded[k] = 1 + minCoinsNeeded[k - C[i - 1]];
+                coinsUsedLast[k] = C[i - 1];
             }
         }
     }
 
-    if(c[T] > T) return false;
+    if(minCoinsNeeded[T] > T) return false;
 
     std::unordered_map<int, int> mp;
     for (int i = 0; i < n; ++i) {
         mp.insert(std::make_pair(C[i], i));
     }
-    for (int i = T; i > 0; i -= p[i]) {
-        usedCoins[mp.at(p[i])]++;
+    for (int i = T; i > 0; i -= coinsUsedLast[i]) {
+        usedCoins[mp.at(coinsUsedLast[i])]++;
     }
 
     return true;
