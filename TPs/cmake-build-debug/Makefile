@@ -75,30 +75,6 @@ CMAKE_BINARY_DIR = "C:\Users\Margarida Viera\Desktop\FEUP 2Y2S\CAL\feup-cal\TPs\
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -P cmake_install.cmake
-.PHONY : install/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -130,6 +106,30 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -227,6 +227,19 @@ TP4: cmake_check_build_system
 TP4/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP4.dir\build.make CMakeFiles/TP4.dir/build
 .PHONY : TP4/fast
+
+#=============================================================================
+# Target rules for targets named TP5
+
+# Build rule for target.
+TP5: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 TP5
+.PHONY : TP5
+
+# fast build rule for target.
+TP5/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/build
+.PHONY : TP5/fast
 
 #=============================================================================
 # Target rules for targets named gmock_main
@@ -793,6 +806,114 @@ TP4/ex6.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP4.dir\build.make CMakeFiles/TP4.dir/TP4/ex6.cpp.s
 .PHONY : TP4/ex6.cpp.s
 
+TP5/Person.obj: TP5/Person.cpp.obj
+
+.PHONY : TP5/Person.obj
+
+# target to build an object file
+TP5/Person.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/TP5/Person.cpp.obj
+.PHONY : TP5/Person.cpp.obj
+
+TP5/Person.i: TP5/Person.cpp.i
+
+.PHONY : TP5/Person.i
+
+# target to preprocess a source file
+TP5/Person.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/TP5/Person.cpp.i
+.PHONY : TP5/Person.cpp.i
+
+TP5/Person.s: TP5/Person.cpp.s
+
+.PHONY : TP5/Person.s
+
+# target to generate assembly for a file
+TP5/Person.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/TP5/Person.cpp.s
+.PHONY : TP5/Person.cpp.s
+
+TP5/ex1.obj: TP5/ex1.cpp.obj
+
+.PHONY : TP5/ex1.obj
+
+# target to build an object file
+TP5/ex1.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/TP5/ex1.cpp.obj
+.PHONY : TP5/ex1.cpp.obj
+
+TP5/ex1.i: TP5/ex1.cpp.i
+
+.PHONY : TP5/ex1.i
+
+# target to preprocess a source file
+TP5/ex1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/TP5/ex1.cpp.i
+.PHONY : TP5/ex1.cpp.i
+
+TP5/ex1.s: TP5/ex1.cpp.s
+
+.PHONY : TP5/ex1.s
+
+# target to generate assembly for a file
+TP5/ex1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/TP5/ex1.cpp.s
+.PHONY : TP5/ex1.cpp.s
+
+TP5/ex2.obj: TP5/ex2.cpp.obj
+
+.PHONY : TP5/ex2.obj
+
+# target to build an object file
+TP5/ex2.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/TP5/ex2.cpp.obj
+.PHONY : TP5/ex2.cpp.obj
+
+TP5/ex2.i: TP5/ex2.cpp.i
+
+.PHONY : TP5/ex2.i
+
+# target to preprocess a source file
+TP5/ex2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/TP5/ex2.cpp.i
+.PHONY : TP5/ex2.cpp.i
+
+TP5/ex2.s: TP5/ex2.cpp.s
+
+.PHONY : TP5/ex2.s
+
+# target to generate assembly for a file
+TP5/ex2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/TP5/ex2.cpp.s
+.PHONY : TP5/ex2.cpp.s
+
+TP5/ex3.obj: TP5/ex3.cpp.obj
+
+.PHONY : TP5/ex3.obj
+
+# target to build an object file
+TP5/ex3.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/TP5/ex3.cpp.obj
+.PHONY : TP5/ex3.cpp.obj
+
+TP5/ex3.i: TP5/ex3.cpp.i
+
+.PHONY : TP5/ex3.i
+
+# target to preprocess a source file
+TP5/ex3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/TP5/ex3.cpp.i
+.PHONY : TP5/ex3.cpp.i
+
+TP5/ex3.s: TP5/ex3.cpp.s
+
+.PHONY : TP5/ex3.s
+
+# target to generate assembly for a file
+TP5/ex3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/TP5/ex3.cpp.s
+.PHONY : TP5/ex3.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -803,6 +924,7 @@ main.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP2.dir\build.make CMakeFiles/TP2.dir/main.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP3.dir\build.make CMakeFiles/TP3.dir/main.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP4.dir\build.make CMakeFiles/TP4.dir/main.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/main.cpp.obj
 .PHONY : main.cpp.obj
 
 main.i: main.cpp.i
@@ -815,6 +937,7 @@ main.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP2.dir\build.make CMakeFiles/TP2.dir/main.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP3.dir\build.make CMakeFiles/TP3.dir/main.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP4.dir\build.make CMakeFiles/TP4.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -827,6 +950,7 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP2.dir\build.make CMakeFiles/TP2.dir/main.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP3.dir\build.make CMakeFiles/TP3.dir/main.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP4.dir\build.make CMakeFiles/TP4.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -845,6 +969,7 @@ help:
 	@echo ... TP2
 	@echo ... TP3
 	@echo ... TP4
+	@echo ... TP5
 	@echo ... gmock
 	@echo ... gmock_main
 	@echo ... gtest
@@ -906,6 +1031,18 @@ help:
 	@echo ... TP4/ex6.obj
 	@echo ... TP4/ex6.i
 	@echo ... TP4/ex6.s
+	@echo ... TP5/Person.obj
+	@echo ... TP5/Person.i
+	@echo ... TP5/Person.s
+	@echo ... TP5/ex1.obj
+	@echo ... TP5/ex1.i
+	@echo ... TP5/ex1.s
+	@echo ... TP5/ex2.obj
+	@echo ... TP5/ex2.i
+	@echo ... TP5/ex2.s
+	@echo ... TP5/ex3.obj
+	@echo ... TP5/ex3.i
+	@echo ... TP5/ex3.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
