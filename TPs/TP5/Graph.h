@@ -322,9 +322,8 @@ int Graph<T>::maxNewChildren(const T & source, T &inf) const {
  */
 template <class T>
 bool Graph<T>::isDAG() const {
-    // TODO (9 lines, mostly reused)
-    // HINT: use the auxiliary field "processing" to mark the vertices in the stack.
-    return true;
+    std::vector<T> topological = topsort(); //if not DAG, topsort call will return an empty vector
+    return topological.size() == vertexSet.size();
 }
 
 /**
