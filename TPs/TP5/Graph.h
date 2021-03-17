@@ -224,21 +224,21 @@ void Graph<T>::dfsVisit(Vertex<T> *v, std::vector<T> & res) const {
 template <class T>
 std::vector<T> Graph<T>::bfs(const T & source) const {
     std::vector<T> res;
-    Vertex<T> *v = findVertex(source);
-    std::queue<Vertex<T> *> toVisit;
+    Vertex<T> *v = findVertex(source); //starting point
+    std::queue<Vertex<T> *> toVisit; //vertexes to visit during the breadth first search
     if (v != NULL) {
         toVisit.push(v);
         while (!toVisit.empty()) {
             v = toVisit.front();
             toVisit.pop();
-            if (!v->visited) {
+            if (!v->visited) { //if not visited yet
                 res.push_back(v->info);
                 v->visited = true;
-                for (auto edge : v->adj) toVisit.push(edge.dest);
+                for (auto edge : v->adj) toVisit.push(edge.dest); //add all its children to the queue
             }
         }
     }
-    for (auto vertex : vertexSet) vertex->visited = false;
+    for (auto vertex : vertexSet) vertex->visited = false; //reset visited
     return res;
 }
 
@@ -285,8 +285,30 @@ std::vector<T> Graph<T>::topsort() const {
  */
 template <class T>
 int Graph<T>::maxNewChildren(const T & source, T &inf) const {
-    // TODO (28 lines, mostly reused)
-    return 0;
+    Vertex<T> *v = findVertex(source); //starting point
+    std::queue<Vertex<T> *> toVisit; //vertexes to visit during the breadth first search
+    int maxNumConnects = INT_MIN;
+    if (v != NULL) {
+        toVisit.push(v);
+        while (!toVisit.empty()) {
+            v = toVisit.front();
+            toVisit.pop();
+            if (!v->visited) { //if not visited yet
+                int numConnects = 0;
+                v->visited = true;
+                for (auto edge : v->adj) {
+                    toVisit.push(edge.dest); //add all its children to the queue
+                    if (!(edge.dest)->visited) numConnects++; //only increment if not visited yet
+                }
+                if (numConnects > maxNumConnects) { //update which vertex has the most connects
+                    maxNumConnects = numConnects;
+                    inf = v->info;
+                }
+            }
+        }
+    }
+    for (auto vertex : vertexSet) vertex->visited = false; //reset visited
+    return maxNumConnects;
 }
 
 /****************** 3b) isDAG   (HOME WORK)  ********************/
