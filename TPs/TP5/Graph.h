@@ -333,6 +333,7 @@ bool Graph<T>::isDAG() const {
 template <class T>
 bool Graph<T>::dfsIsDAG(Vertex<T> *v) const {
     // TODO (12 lines, mostly reused)
+    // is this really necessary??
     return true;
 }
 
