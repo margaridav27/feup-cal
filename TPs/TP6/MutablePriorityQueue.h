@@ -17,7 +17,7 @@
  * class T must have: (i) accessible field int queueIndex; (ii) operator< defined.
  */
 
-template <class T>
+ template <class T>
 class MutablePriorityQueue {
     std::vector<T *> H;
     void heapifyUp(unsigned i);

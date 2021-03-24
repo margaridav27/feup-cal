@@ -7,8 +7,10 @@
 #include <vector>
 #include <queue>
 #include <list>
+#include <set>
 #include <limits>
 #include <cmath>
+#include <iostream>
 #include "MutablePriorityQueue.h"
 
 
@@ -176,8 +178,7 @@ void Graph<T>::unweightedShortestPath(const T &orig) {
     for (Vertex<T> *vertex : vertexSet) {
         vertex->dist = INT_MAX;
         vertex->path = NULL;
-    }
-    findVertex(orig)->dist = 0;
+    } findVertex(orig)->dist = 0;
     std::queue< Vertex<T>* > vertices;
     vertices.push(findVertex(orig));
     while (!vertices.empty()) {
@@ -196,7 +197,28 @@ void Graph<T>::unweightedShortestPath(const T &orig) {
 
 template<class T>
 void Graph<T>::dijkstraShortestPath(const T &origin) {
-    // TODO implement this
+    Vertex<T> *v = findVertex(origin);
+    if (v == NULL) return;
+    for (Vertex<T> *vertex : vertexSet) {
+        vertex->dist = INT_MAX;
+        vertex->path = NULL;
+    } v->dist = 0;
+    std::set< Vertex<T>* > visited;
+    MutablePriorityQueue< Vertex<T> > queue;
+    queue.insert(v);
+    while (visited.size() != vertexSet.size()) {
+        std::cout << visited.size() << "\t" << vertexSet.size() << "\n";
+        v = queue.extractMin();
+        visited.insert(v);
+        for (Edge<T> edge : v->adj) {
+            if (edge.dest->dist > v->dist + edge.dest->dist) {
+                edge.dest->dist = v->dist + edge.dest->dist;
+                edge.dest->path = v;
+            }
+            if (edge.dest->dist == INT_MAX) queue.insert(edge.dest);
+            else queue.decreaseKey(edge.dest);
+        }
+    }
 }
 
 

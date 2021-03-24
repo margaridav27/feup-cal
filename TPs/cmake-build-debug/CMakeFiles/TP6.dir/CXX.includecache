@@ -337,9 +337,13 @@ queue
 -
 list
 -
+set
+-
 limits
 -
 cmath
+-
+iostream
 -
 MutablePriorityQueue.h
 C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP6/MutablePriorityQueue.h
