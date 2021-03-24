@@ -172,7 +172,25 @@ bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
 
 template<class T>
 void Graph<T>::unweightedShortestPath(const T &orig) {
-    // TODO implement this
+    if (findVertex(orig) == NULL) return;
+    for (Vertex<T> *vertex : vertexSet) {
+        vertex->dist = INT_MAX;
+        vertex->path = NULL;
+    }
+    findVertex(orig)->dist = 0;
+    std::queue< Vertex<T>* > vertices;
+    vertices.push(findVertex(orig));
+    while (!vertices.empty()) {
+        Vertex<T> *v = vertices.front();
+        vertices.pop();
+        for (Edge<T> edge : v->adj) {
+            if (edge.dest->dist == INT_MAX) {
+                vertices.push(edge.dest);
+                edge.dest->dist = v->dist + 1;
+                edge.dest->path = v;
+            }
+        }
+    }
 }
 
 
@@ -191,7 +209,12 @@ void Graph<T>::bellmanFordShortestPath(const T &orig) {
 template<class T>
 std::vector<T> Graph<T>::getPath(const T &origin, const T &dest) const{
     std::vector<T> res;
-    // TODO implement this
+    if (findVertex(origin) == NULL || findVertex(dest) == NULL) return res;
+    Vertex<T> *v = findVertex(dest);
+    while (v != NULL) {
+        res.insert(res.begin(), v->info);
+        v = v->path;
+    }
     return res;
 }
 

@@ -86,16 +86,6 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -106,6 +96,16 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -240,6 +240,19 @@ TP5: cmake_check_build_system
 TP5/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/build
 .PHONY : TP5/fast
+
+#=============================================================================
+# Target rules for targets named TP6
+
+# Build rule for target.
+TP6: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 TP6
+.PHONY : TP6
+
+# fast build rule for target.
+TP6/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/build
+.PHONY : TP6/fast
 
 #=============================================================================
 # Target rules for targets named gmock_main
@@ -914,6 +927,141 @@ TP5/ex3.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/TP5/ex3.cpp.s
 .PHONY : TP5/ex3.cpp.s
 
+TP6/TestAux.obj: TP6/TestAux.cpp.obj
+
+.PHONY : TP6/TestAux.obj
+
+# target to build an object file
+TP6/TestAux.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/TP6/TestAux.cpp.obj
+.PHONY : TP6/TestAux.cpp.obj
+
+TP6/TestAux.i: TP6/TestAux.cpp.i
+
+.PHONY : TP6/TestAux.i
+
+# target to preprocess a source file
+TP6/TestAux.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/TP6/TestAux.cpp.i
+.PHONY : TP6/TestAux.cpp.i
+
+TP6/TestAux.s: TP6/TestAux.cpp.s
+
+.PHONY : TP6/TestAux.s
+
+# target to generate assembly for a file
+TP6/TestAux.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/TP6/TestAux.cpp.s
+.PHONY : TP6/TestAux.cpp.s
+
+TP6/ex1.obj: TP6/ex1.cpp.obj
+
+.PHONY : TP6/ex1.obj
+
+# target to build an object file
+TP6/ex1.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/TP6/ex1.cpp.obj
+.PHONY : TP6/ex1.cpp.obj
+
+TP6/ex1.i: TP6/ex1.cpp.i
+
+.PHONY : TP6/ex1.i
+
+# target to preprocess a source file
+TP6/ex1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/TP6/ex1.cpp.i
+.PHONY : TP6/ex1.cpp.i
+
+TP6/ex1.s: TP6/ex1.cpp.s
+
+.PHONY : TP6/ex1.s
+
+# target to generate assembly for a file
+TP6/ex1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/TP6/ex1.cpp.s
+.PHONY : TP6/ex1.cpp.s
+
+TP6/ex2.obj: TP6/ex2.cpp.obj
+
+.PHONY : TP6/ex2.obj
+
+# target to build an object file
+TP6/ex2.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/TP6/ex2.cpp.obj
+.PHONY : TP6/ex2.cpp.obj
+
+TP6/ex2.i: TP6/ex2.cpp.i
+
+.PHONY : TP6/ex2.i
+
+# target to preprocess a source file
+TP6/ex2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/TP6/ex2.cpp.i
+.PHONY : TP6/ex2.cpp.i
+
+TP6/ex2.s: TP6/ex2.cpp.s
+
+.PHONY : TP6/ex2.s
+
+# target to generate assembly for a file
+TP6/ex2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/TP6/ex2.cpp.s
+.PHONY : TP6/ex2.cpp.s
+
+TP6/ex3.obj: TP6/ex3.cpp.obj
+
+.PHONY : TP6/ex3.obj
+
+# target to build an object file
+TP6/ex3.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/TP6/ex3.cpp.obj
+.PHONY : TP6/ex3.cpp.obj
+
+TP6/ex3.i: TP6/ex3.cpp.i
+
+.PHONY : TP6/ex3.i
+
+# target to preprocess a source file
+TP6/ex3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/TP6/ex3.cpp.i
+.PHONY : TP6/ex3.cpp.i
+
+TP6/ex3.s: TP6/ex3.cpp.s
+
+.PHONY : TP6/ex3.s
+
+# target to generate assembly for a file
+TP6/ex3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/TP6/ex3.cpp.s
+.PHONY : TP6/ex3.cpp.s
+
+TP6/ex4.obj: TP6/ex4.cpp.obj
+
+.PHONY : TP6/ex4.obj
+
+# target to build an object file
+TP6/ex4.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/TP6/ex4.cpp.obj
+.PHONY : TP6/ex4.cpp.obj
+
+TP6/ex4.i: TP6/ex4.cpp.i
+
+.PHONY : TP6/ex4.i
+
+# target to preprocess a source file
+TP6/ex4.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/TP6/ex4.cpp.i
+.PHONY : TP6/ex4.cpp.i
+
+TP6/ex4.s: TP6/ex4.cpp.s
+
+.PHONY : TP6/ex4.s
+
+# target to generate assembly for a file
+TP6/ex4.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/TP6/ex4.cpp.s
+.PHONY : TP6/ex4.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -925,6 +1073,7 @@ main.cpp.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP3.dir\build.make CMakeFiles/TP3.dir/main.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP4.dir\build.make CMakeFiles/TP4.dir/main.cpp.obj
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/main.cpp.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/main.cpp.obj
 .PHONY : main.cpp.obj
 
 main.i: main.cpp.i
@@ -938,6 +1087,7 @@ main.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP3.dir\build.make CMakeFiles/TP3.dir/main.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP4.dir\build.make CMakeFiles/TP4.dir/main.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -951,6 +1101,7 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP3.dir\build.make CMakeFiles/TP3.dir/main.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP4.dir\build.make CMakeFiles/TP4.dir/main.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP5.dir\build.make CMakeFiles/TP5.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TP6.dir\build.make CMakeFiles/TP6.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -970,6 +1121,7 @@ help:
 	@echo ... TP3
 	@echo ... TP4
 	@echo ... TP5
+	@echo ... TP6
 	@echo ... gmock
 	@echo ... gmock_main
 	@echo ... gtest
@@ -1043,6 +1195,21 @@ help:
 	@echo ... TP5/ex3.obj
 	@echo ... TP5/ex3.i
 	@echo ... TP5/ex3.s
+	@echo ... TP6/TestAux.obj
+	@echo ... TP6/TestAux.i
+	@echo ... TP6/TestAux.s
+	@echo ... TP6/ex1.obj
+	@echo ... TP6/ex1.i
+	@echo ... TP6/ex1.s
+	@echo ... TP6/ex2.obj
+	@echo ... TP6/ex2.i
+	@echo ... TP6/ex2.s
+	@echo ... TP6/ex3.obj
+	@echo ... TP6/ex3.i
+	@echo ... TP6/ex3.s
+	@echo ... TP6/ex4.obj
+	@echo ... TP6/ex4.i
+	@echo ... TP6/ex4.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
