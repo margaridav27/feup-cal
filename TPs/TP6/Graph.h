@@ -224,7 +224,21 @@ void Graph<T>::dijkstraShortestPath(const T &origin) {
 
 template<class T>
 void Graph<T>::bellmanFordShortestPath(const T &orig) {
-    // TODO implement this
+    Vertex<T> *v = findVertex(orig);
+    if (v == NULL) return;
+    for (Vertex<T> *vertex : vertexSet) {
+        vertex->dist = INT_MAX;
+        vertex->path = NULL;
+    } v->dist = 0;
+    for (int i = 1; i < vertexSet.size(); i++) {
+        v = vertexSet[i];
+        for (Edge<T> edge : v->adj) {
+            if (edge.dest->dist > v->dist + edge.dest->dist) {
+                edge.dest->dist = v->dist + edge.dest->dist;
+                edge.dest->path = v;
+            }
+        }
+    }
 }
 
 
