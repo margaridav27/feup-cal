@@ -211,8 +211,8 @@ void Graph<T>::dijkstraShortestPath(const T &origin) {
         v = queue.extractMin();
         visited.insert(v);
         for (Edge<T> edge : v->adj) {
-            if (edge.dest->dist > v->dist + edge.dest->dist) {
-                edge.dest->dist = v->dist + edge.dest->dist;
+            if (edge.dest->dist > v->dist + edge.weight) { //relaxation step
+                edge.dest->dist = v->dist + edge.weight;
                 edge.dest->path = v;
             }
             if (edge.dest->dist == INT_MAX) queue.insert(edge.dest);
@@ -232,9 +232,9 @@ void Graph<T>::bellmanFordShortestPath(const T &orig) {
     } v->dist = 0;
     for (int i = 1; i < vertexSet.size(); i++) {
         v = vertexSet[i];
-        for (Edge<T> edge : v->adj) {
-            if (edge.dest->dist > v->dist + edge.dest->dist) {
-                edge.dest->dist = v->dist + edge.dest->dist;
+        for (Edge<T> edge : v->adj) { //relaxation step
+            if (edge.dest->dist > v->dist + edge.weight) {
+                edge.dest->dist = v->dist + edge.weight;
                 edge.dest->path = v;
             }
         }
