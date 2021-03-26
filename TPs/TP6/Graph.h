@@ -13,7 +13,6 @@
 #include <iostream>
 #include "MutablePriorityQueue.h"
 
-
 template <class T> class Edge;
 template <class T> class Graph;
 template <class T> class Vertex;
@@ -174,18 +173,20 @@ bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
 
 template<class T>
 void Graph<T>::unweightedShortestPath(const T &orig) {
-    if (findVertex(orig) == NULL) return;
+    Vertex<T> *start = findVertex(orig);
+    if (start == NULL) return;
     for (Vertex<T> *vertex : vertexSet) {
-        vertex->dist = INT_MAX;
+        vertex->dist = INF;
         vertex->path = NULL;
-    } findVertex(orig)->dist = 0;
+    }
+    start->dist = 0;
     std::queue< Vertex<T>* > vertices;
     vertices.push(findVertex(orig));
     while (!vertices.empty()) {
         Vertex<T> *v = vertices.front();
         vertices.pop();
         for (Edge<T> edge : v->adj) {
-            if (edge.dest->dist == INT_MAX) {
+            if (edge.dest->dist == INF) {
                 vertices.push(edge.dest);
                 edge.dest->dist = v->dist + 1;
                 edge.dest->path = v;
@@ -197,26 +198,25 @@ void Graph<T>::unweightedShortestPath(const T &orig) {
 
 template<class T>
 void Graph<T>::dijkstraShortestPath(const T &origin) {
-    Vertex<T> *v = findVertex(origin);
-    if (v == NULL) return;
+    Vertex<T> *start = findVertex(origin);
+    if (start == NULL) return;
     for (Vertex<T> *vertex : vertexSet) {
-        vertex->dist = INT_MAX;
+        vertex->dist = INF;
         vertex->path = NULL;
-    } v->dist = 0;
-    std::set< Vertex<T>* > visited;
+    }
+    start->dist = 0;
     MutablePriorityQueue< Vertex<T> > queue;
-    queue.insert(v);
-    while (visited.size() != vertexSet.size()) {
-        std::cout << visited.size() << "\t" << vertexSet.size() << "\n";
-        v = queue.extractMin();
-        visited.insert(v);
+    queue.insert(start);
+    while (!queue.empty()) {
+        Vertex<T> *v = queue.extractMin();
         for (Edge<T> edge : v->adj) {
-            if (edge.dest->dist > v->dist + edge.weight) { //relaxation step
+            if (edge.dest->dist > v->dist + edge.weight) {
+                double oldDist = edge.dest->dist;
                 edge.dest->dist = v->dist + edge.weight;
                 edge.dest->path = v;
+                if (oldDist == INF) queue.insert(edge.dest);
+                else queue.decreaseKey(edge.dest);
             }
-            if (edge.dest->dist == INT_MAX) queue.insert(edge.dest);
-            else queue.decreaseKey(edge.dest);
         }
     }
 }
@@ -224,18 +224,20 @@ void Graph<T>::dijkstraShortestPath(const T &origin) {
 
 template<class T>
 void Graph<T>::bellmanFordShortestPath(const T &orig) {
-    Vertex<T> *v = findVertex(orig);
-    if (v == NULL) return;
+    Vertex<T> *start = findVertex(orig);
+    if (start == NULL) return;
     for (Vertex<T> *vertex : vertexSet) {
         vertex->dist = INT_MAX;
         vertex->path = NULL;
-    } v->dist = 0;
+    }
+    start->dist = 0;
     for (int i = 1; i < vertexSet.size(); i++) {
-        v = vertexSet[i];
-        for (Edge<T> edge : v->adj) { //relaxation step
-            if (edge.dest->dist > v->dist + edge.weight) {
-                edge.dest->dist = v->dist + edge.weight;
-                edge.dest->path = v;
+        for (Vertex<T> *vertex : vertexSet) {
+            for (Edge<T> edge : vertex->adj) {
+                if (edge.dest->dist > vertex->dist + edge.weight) {
+                    edge.dest->dist = vertex->dist + edge.weight;
+                    edge.dest->path = vertex;
+                }
             }
         }
     }
