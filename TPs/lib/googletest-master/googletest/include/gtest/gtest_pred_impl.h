@@ -55,11 +55,11 @@ namespace testing {
 // If you don't care about formatting, you can use the more
 // restrictive version:
 //
-//   ASSERT_PRED1(pred, v1)
-//   ASSERT_PRED2(pred, v1, v2)
+//   ASSERT_PRED1(path, v1)
+//   ASSERT_PRED2(path, v1, v2)
 //   ...
 //
-// where pred is an n-ary function or functor that returns bool,
+// where path is an n-ary function or functor that returns bool,
 // and the values v1, v2, ..., must support the << operator for
 // streaming to std::ostream.
 //

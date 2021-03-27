@@ -1434,15 +1434,15 @@ using AllOfArrayMatcher = SomeOfArrayMatcher<AllOfMatcherImpl, T>;
 template <typename T>
 using AnyOfArrayMatcher = SomeOfArrayMatcher<AnyOfMatcherImpl, T>;
 
-// Used for implementing Truly(pred), which turns a predicate into a
+// Used for implementing Truly(path), which turns a predicate into a
 // matcher.
 template <typename Predicate>
 class TrulyMatcher {
  public:
   explicit TrulyMatcher(Predicate pred) : predicate_(pred) {}
 
-  // This method template allows Truly(pred) to be used as a matcher
-  // for type T where T is the argument type of predicate 'pred'.  The
+  // This method template allows Truly(path) to be used as a matcher
+  // for type T where T is the argument type of predicate 'path'.  The
   // argument is passed by reference as the predicate may be
   // interested in the address of the argument.
   template <typename T>

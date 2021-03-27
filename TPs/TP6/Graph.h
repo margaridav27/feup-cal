@@ -101,6 +101,8 @@ template <class T>
 class Graph {
     std::vector<Vertex<T> *> vertexSet;    // vertex set
 
+    std::vector< std::vector<double> > dist;
+    std::vector< std::vector<int> > path;
 public:
     Vertex<T> *findVertex(const T &in) const;
     bool addVertex(const T &in);
@@ -262,13 +264,39 @@ std::vector<T> Graph<T>::getPath(const T &origin, const T &dest) const{
 
 template<class T>
 void Graph<T>::floydWarshallShortestPath() {
-    // TODO implement this
+    int n = vertexSet.size();
+    dist = std::vector< std::vector<double> >(n, std::vector<double>(n, INF));
+    path = std::vector< std::vector<int> >(n, std::vector<int>(n, -1));
+    for (Vertex<T> *vertex : vertexSet) {
+        dist[vertex->info - 1][vertex->info - 1] = 0;
+        path[vertex->info - 1][vertex->info - 1] = vertex->info - 1;
+        for (Edge<T> edge : vertex->adj) {
+            dist[vertex->info - 1][edge.dest->info - 1] = edge.weight;
+            path[vertex->info - 1][edge.dest->info - 1] = edge.dest->info - 1;
+        }
+    }
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (dist[i][j] > dist[i][k] + dist[k][j]) {
+                    dist[i][j] = dist[i][k] + dist[k][j];
+                    path[i][j] = path[i][k];
+                }
+            }
+        }
+    }
 }
 
 template<class T>
 std::vector<T> Graph<T>::getfloydWarshallPath(const T &orig, const T &dest) const{
     std::vector<T> res;
-    // TODO implement this
+    if (dist[orig - 1][dest - 1] == INF) return res; //there is no path from orig to dest
+    T next = orig - 1;
+    res.push_back(next + 1);
+    while (next != (dest - 1)  && next != -1) {
+        next = path[next][dest - 1];
+        res.push_back(next + 1);
+    }
     return res;
 }
 
