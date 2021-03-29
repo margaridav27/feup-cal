@@ -83,3 +83,15 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
   file(TOUCH_NOCREATE "C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/CMakeFiles/cmake.verify_globs")
 endif()
+
+# TP7_FILES at CMakeLists.txt:27 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP7/*.cpp")
+set(OLD_GLOB
+  "C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP7/TestAux.cpp"
+  "C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP7/ex1.cpp"
+  "C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP7/ex2.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/CMakeFiles/cmake.verify_globs")
+endif()

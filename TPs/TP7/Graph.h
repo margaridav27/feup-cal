@@ -44,7 +44,6 @@ public:
 	friend class MutablePriorityQueue<Vertex<T>>;
 };
 
-
 template <class T>
 Vertex<T>::Vertex(T in): info(in) {}
 
@@ -143,7 +142,6 @@ public:
     unsigned int calculateKruskal();
 };
 
-
 template <class T>
 int Graph<T>::getNumVertex() const {
 	return vertexSet.size();
@@ -194,24 +192,49 @@ bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
 
 template <class T>
 bool Graph<T>::addBidirectionalEdge(const T &sourc, const T &dest, double w) {
-	//TODO
-	return false;
+	addVertex(sourc);
+	addVertex(dest);
+	addEdge(sourc, dest, w);
+	addEdge(dest, sourc, w);
+ 	return false;
 }
 
 template <class T>
-Graph<T>::~Graph() {
-
-
-}
+Graph<T>::~Graph() { }
 
 /**************** Minimum Spanning Tree  ***************/
 
 #include <iostream>
+#include <set>
 
 template <class T>
 unsigned int Graph<T>::calculatePrim() {
-    //TODO
-	return 0;
+    for (Vertex<T> *v : vertexSet) {
+        v->dist = INF;
+        v->path = NULL;
+        v->visited = false;
+    }
+    Vertex<T> *root = vertexSet[0];
+    root->dist = 0;
+    MutablePriorityQueue< Vertex<T> > queue;
+    queue.insert(root);
+    while (!queue.empty()) {
+        Vertex<T> *v = queue.extractMin();
+        v->visited = true;
+        for (Edge<T> *edge : v->adj) {
+            Vertex<T> *w = edge->dest;
+            if (!w->visited) { // if not already processed
+                w->dist = std::min(w->dist, edge->weight);
+                w->path = v;
+                queue.insert(w);
+            }
+        }
+    }
+    unsigned int cost = 0;
+    for (Vertex<T> *v : vertexSet) {
+        cost += v->dist;
+    }
+	return cost;
 }
 
 /**

@@ -19,15 +19,15 @@
 
 template <class T>
 class MutablePriorityQueue {
-    std::vector<T *> H;
+    std::vector<T*> H;
     void heapifyUp(unsigned i);
     void heapifyDown(unsigned i);
-    inline void set(unsigned i, T * x);
+    inline void set(unsigned i, T *x);
 public:
     MutablePriorityQueue();
-    void insert(T * x);
+    void insert(T *x);
     T * extractMin();
-    void decreaseKey(T * x);
+    void decreaseKey(T *x);
     bool empty();
 };
 
@@ -53,6 +53,7 @@ T* MutablePriorityQueue<T>::extractMin() {
     H[1] = H.back();
     H.pop_back();
     if(H.size() > 1) heapifyDown(1);
+    heapifyDown(1);
     x->queueIndex = 0;
     return x;
 }
@@ -96,7 +97,7 @@ void MutablePriorityQueue<T>::heapifyDown(unsigned i) {
 }
 
 template <class T>
-void MutablePriorityQueue<T>::set(unsigned i, T * x) {
+void MutablePriorityQueue<T>::set(unsigned i, T *x) {
     H[i] = x;
     x->queueIndex = i;
 }
