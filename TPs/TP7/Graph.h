@@ -274,8 +274,24 @@ Vertex<T> * Graph<T>::findSet(Vertex<T> * x) {
  */
 template <class T>
 unsigned int Graph<T>::calculateKruskal() {
-    //TODO
-	return 0;
+    std::vector< Edge<T>* > A;
+    for (Vertex<T> *v : vertexSet) makeSet(v);
+    for (Vertex<T> *v : vertexSet) {
+        std::vector< Edge<T>* > edges = v->adj;
+        // TODO sort edges into nondecreasing order by weight w
+        for (Edge<T>* e : edges) {
+            if (findSet(e->dest) != findSet(v)) {
+                A.push_back(e);
+                linkSets(e->dest, v);
+                break;
+            }
+        }
+    }
+    unsigned int cost = 0;
+    for (Edge<T> *e : A) {
+       cost += e->weight;
+    }
+	return cost;
 }
 
 /**
@@ -283,7 +299,7 @@ unsigned int Graph<T>::calculateKruskal() {
  */
 template <class T>
 void Graph<T>::dfsKruskalPath(Vertex<T> *v) {
-    //TODO
+    // TODO
 }
 
 #endif /* GRAPH_H_ */
