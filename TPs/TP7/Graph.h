@@ -278,7 +278,8 @@ unsigned int Graph<T>::calculateKruskal() {
     for (Vertex<T> *v : vertexSet) makeSet(v);
     for (Vertex<T> *v : vertexSet) {
         std::vector< Edge<T>* > edges = v->adj;
-        // TODO sort edges into nondecreasing order by weight w
+        std::sort(edges.begin(), edges.end(), [](const Edge<T> *e1, const Edge<T> *e2)
+                                                { return e1->weight < e2->weight; });
         for (Edge<T>* e : edges) {
             if (findSet(e->dest) != findSet(v)) {
                 A.push_back(e);
