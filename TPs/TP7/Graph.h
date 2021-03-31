@@ -192,11 +192,14 @@ bool Graph<T>::addEdge(const T &sourc, const T &dest, double w) {
 
 template <class T>
 bool Graph<T>::addBidirectionalEdge(const T &sourc, const T &dest, double w) {
-	addVertex(sourc);
-	addVertex(dest);
-	addEdge(sourc, dest, w);
-	addEdge(dest, sourc, w);
- 	return false;
+    Vertex<T> *v1 = findVertex(sourc);
+    Vertex<T> *v2 = findVertex(dest);
+    if (v1 == NULL || v2 == NULL) return false;
+    Edge<T> *e1 = v1->addEdge(v2, w);
+    Edge<T> *e2 = v2->addEdge(v1, w);
+	e1->reverse = e2;
+	e2->reverse = e1;
+ 	return true;
 }
 
 template <class T>
@@ -240,7 +243,6 @@ unsigned int Graph<T>::calculatePrim() {
 /**
  * Disjoint sets operations (page 571, Introduction to Algorithms) for Kruskal's algorithm.
  */
-
 template <class T>
 void Graph<T>::makeSet(Vertex<T> * x) {
 	x->path = x;
@@ -290,6 +292,7 @@ unsigned int Graph<T>::calculateKruskal() {
     }
     unsigned int cost = 0;
     for (Edge<T> *e : A) {
+       std::cout << e->weight << std::endl;
        cost += e->weight;
     }
 	return cost;
