@@ -276,26 +276,36 @@ Vertex<T> * Graph<T>::findSet(Vertex<T> * x) {
  */
 template <class T>
 unsigned int Graph<T>::calculateKruskal() {
-    std::vector< Edge<T>* > A;
-    for (Vertex<T> *v : vertexSet) makeSet(v);
     for (Vertex<T> *v : vertexSet) {
-        std::vector< Edge<T>* > edges = v->adj;
-        std::sort(edges.begin(), edges.end(), [](const Edge<T> *e1, const Edge<T> *e2)
-                                                { return e1->weight < e2->weight; });
-        for (Edge<T>* e : edges) {
-            if (findSet(e->dest) != findSet(v)) {
-                A.push_back(e);
-                linkSets(e->dest, v);
-                break;
-            }
+        makeSet(v);
+        v->visited = false;
+    }
+    std::vector< Edge<T>* > edges;
+    for (Vertex<T> *v : vertexSet) {
+        for (Edge<T> *e : v->adj) {
+            e->selected = false;
+            edges.push_back(e);
         }
     }
-    unsigned int cost = 0;
-    for (Edge<T> *e : A) {
-       std::cout << e->weight << std::endl;
-       cost += e->weight;
+    std::sort(edges.begin(), edges.end(), [](const Edge<T> *e1, const Edge<T> *e2)
+                                            { return e1->weight < e2->weight; });
+    for (Edge<T> *e : edges) {
+        Vertex<T> *parent = findSet(e->orig);
+        Vertex<T> *child =  findSet(e->dest);
+        if (parent != child) {
+            e->selected = true;
+            linkSets(parent, child);
+        }
     }
-	return cost;
+
+    vertexSet[0]->path = nullptr;
+    dfsKruskalPath(vertexSet[0]);
+
+    unsigned int cost = 0;
+    for (Edge<T> *e : edges) {
+        if (e->selected) cost += e->weight;
+    }
+    return cost;
 }
 
 /**
@@ -303,7 +313,13 @@ unsigned int Graph<T>::calculateKruskal() {
  */
 template <class T>
 void Graph<T>::dfsKruskalPath(Vertex<T> *v) {
-    // TODO
+    v->visited = true;
+    for (Edge<T> *e : v->adj) {
+        if (!e->dest->visited && e->selected) {
+            e->dest->path = e->orig;
+            dfsKruskalPath(e->dest);
+        }
+    }
 }
 
 #endif /* GRAPH_H_ */
