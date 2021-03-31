@@ -21,13 +21,15 @@ template <class T> class Vertex;
 
 template <class T>
 class Vertex {
-	T info;                 // contents
-	std::vector<Edge<T> *> adj;  // outgoing edges
+    friend double spanningTreeCost(const std::vector<Vertex<int>*> &);
+
+	T info; // contents
+	std::vector<Edge<T> *> adj; // outgoing edges
 
 	bool visited;
 	double dist = 0;
 	Vertex<T> *path = nullptr;
-	int queueIndex = 0; 		// required by MutablePriorityQueue
+	int queueIndex = 0; // required by MutablePriorityQueue
 
 	// Fp07 - minimum spanning tree (Kruskal)
 	int id;
@@ -119,18 +121,16 @@ Vertex<T> *Edge<T>::getDest() const {
 
 template <class T>
 class Graph {
-    std::vector<Vertex<T> *> vertexSet;    // vertex set
+    std::vector<Vertex<T>*> vertexSet; // vertex set
 
 	// Fp07 (Kruskal's algorithm)
 	void makeSet(Vertex<T> * x);
-	Vertex<T> * findSet(Vertex<T> * x);
+	Vertex<T>* findSet(Vertex<T> * x);
 	void linkSets(Vertex<T> * x, Vertex<T> * y);
 	void dfsKruskalPath(Vertex<T> *v);
-
-
 public:
     ~Graph();
-	Vertex<T> *findVertex(const T &in) const;
+	Vertex<T>* findVertex(const T &in) const;
 	bool addVertex(const T &in);
 	bool addEdge(const T &sourc, const T &dest, double w);
 	bool addBidirectionalEdge(const T &sourc, const T &dest, double w);
@@ -138,8 +138,8 @@ public:
     std::vector<Vertex<T> *> getVertexSet() const;
 
 	// Fp07 - minimum spanning tree
-    unsigned int calculatePrim();
-    unsigned int calculateKruskal();
+    std::vector<Vertex<T>*> calculatePrim();
+    std::vector<Vertex<T>*> calculateKruskal();
 };
 
 template <class T>
@@ -211,33 +211,33 @@ Graph<T>::~Graph() { }
 #include <set>
 
 template <class T>
-unsigned int Graph<T>::calculatePrim() {
+std::vector<Vertex<T>*> Graph<T>::calculatePrim() {
     for (Vertex<T> *v : vertexSet) {
         v->dist = INF;
-        v->path = NULL;
+        v->path = nullptr;
         v->visited = false;
     }
-    Vertex<T> *root = vertexSet[0];
-    root->dist = 0;
     MutablePriorityQueue< Vertex<T> > queue;
-    queue.insert(root);
+    vertexSet[0]->dist = 0;
+    queue.insert(vertexSet[0]);
     while (!queue.empty()) {
         Vertex<T> *v = queue.extractMin();
         v->visited = true;
         for (Edge<T> *edge : v->adj) {
             Vertex<T> *w = edge->dest;
-            if (!w->visited) { // if not already processed
-                w->dist = std::min(w->dist, edge->weight);
-                w->path = v;
-                queue.insert(w);
+            if (!w->visited) {
+                double oldDist = w->dist;
+                if (w->dist > edge->weight) {
+                    w->dist = edge->weight;
+                    w->path = v;
+                    if (oldDist == INF) queue.insert(w);
+                    else queue.decreaseKey(w);
+                }
             }
         }
     }
-    unsigned int cost = 0;
-    for (Vertex<T> *v : vertexSet) {
-        cost += v->dist;
-    }
-	return cost;
+
+    return vertexSet;
 }
 
 /**
@@ -275,7 +275,7 @@ Vertex<T> * Graph<T>::findSet(Vertex<T> * x) {
  * to the parent vertex in the tree (nullptr in the root).
  */
 template <class T>
-unsigned int Graph<T>::calculateKruskal() {
+std::vector<Vertex<T>*> Graph<T>::calculateKruskal() {
     for (Vertex<T> *v : vertexSet) {
         makeSet(v);
         v->visited = false;
@@ -290,22 +290,17 @@ unsigned int Graph<T>::calculateKruskal() {
     std::sort(edges.begin(), edges.end(), [](const Edge<T> *e1, const Edge<T> *e2)
                                             { return e1->weight < e2->weight; });
     for (Edge<T> *e : edges) {
-        Vertex<T> *parent = findSet(e->orig);
-        Vertex<T> *child =  findSet(e->dest);
-        if (parent != child) {
+        Vertex<T> *from = findSet(e->orig);
+        Vertex<T> *to =  findSet(e->dest);
+        if (from != to) {
             e->selected = true;
-            linkSets(parent, child);
+            e->reverse->selected = true;
+            linkSets(from, to);
         }
     }
-
     vertexSet[0]->path = nullptr;
     dfsKruskalPath(vertexSet[0]);
-
-    unsigned int cost = 0;
-    for (Edge<T> *e : edges) {
-        if (e->selected) cost += e->weight;
-    }
-    return cost;
+    return vertexSet;
 }
 
 /**
