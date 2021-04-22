@@ -298,7 +298,7 @@ std::vector<Vertex<T>*> Graph<T>::calculateKruskal() {
             linkSets(from, to);
         }
     }
-    vertexSet[0]->path = nullptr;
+    vertexSet[0]->path = nullptr; //defining starting vertex
     dfsKruskalPath(vertexSet[0]);
     return vertexSet;
 }
