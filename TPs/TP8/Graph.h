@@ -158,8 +158,81 @@ std::vector<Vertex<T> *> Graph<T>::getVertexSet() const {
  * The result is defined by the "flow" field of each edge.
  */
 template <class T>
+void Graph<T>::resetFlows() {
+    for (Vertex<T> *v : vertexSet) {
+        for (Edge<T> *e : v->incoming) e->flow = 0;
+        for (Edge<T> *e : v->outgoing) e->flow = 0;
+    }
+}
+
+template <class T>
+bool Graph<T>::findAugmentationPath(Vertex<T> *s, Vertex<T> *t) {
+    for (Vertex<T> *v : vertexSet) v->visited = false;
+    s->visited = true;
+    std::queue<Vertex<T>*> Q;
+    Q.push(s);
+    while (!Q.empty() && !t->visited) {
+        Vertex<T>* v = Q.front();
+        Q.pop();
+        for (Edge<T> *e : v->outgoing) //direct residual edges
+            testAndVisit(Q, e, e->dest, e->capacity - e->flow);
+        for (Edge<T> *e : v->incoming) //reverse residual edges
+            testAndVisit(Q, e, e->orig, e->flow);
+    }
+    return t->visited;
+}
+
+template <class T>
+void Graph<T>::testAndVisit(std::queue< Vertex<T>*> &q, Edge<T> *e, Vertex<T> *w, double residual) {
+    if (!w->visited && residual > 0) {
+        w->visited = true;
+        w->path = e; //previous edge in shortest path
+        q.push(w);
+    }
+}
+
+template <class T>
+double Graph<T>::findMinResidualAlongPath(Vertex<T> *s, Vertex<T> *t) {
+    double flow = INF;
+    Vertex<T> *v = t;
+    while (v != s) {
+        Edge<T> *e = v->path;
+        if (e->dest == v) { //direct residual edge
+            flow = std::min(flow, e->capacity - e->flow);
+            v = e->orig;
+        } else { //reverse residual edge
+            flow = std::min(flow, e->flow);
+            v = e->dest;
+        }
+    }
+    return flow;
+}
+
+template <class T>
+void Graph<T>::augmentFlowAlongPath(Vertex<T> *s, Vertex<T> *t, double flow) {
+    Vertex<T> *v = t;
+    while (v != s) {
+        Edge<T> *e = v->path;
+        if (e->dest == v) { //direct residual edge
+            e->flow = e->flow + flow;
+            v = e->orig;
+        } else { //reverse residual edge
+            e->flow = e->flow - flow;
+            v = e->dest;
+        }
+    }
+}
+
+template <class T>
 void Graph<T>::fordFulkerson(T source, T target) {
-    // TODO
+    resetFlows();
+    Vertex<T> *s = findVertex(source);
+    Vertex<T> *t = findVertex(target);
+    if (s == NULL || t == NULL) return;
+    while (findAugmentationPath(s, t)) {
+        double flow = findMinResidualAlongPath(s, t);
+        augmentFlowAlongPath(s, t, flow);
+    }
 }
 
 #endif /* GRAPH_H_ */

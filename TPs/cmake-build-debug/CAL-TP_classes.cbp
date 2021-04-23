@@ -17,16 +17,6 @@
 					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="TP1">
 				<Option output="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/TP1.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug"/>
@@ -377,6 +367,66 @@
 					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="TP8">
+				<Option output="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/TP8.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googletest/include"/>
+					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googletest"/>
+					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googlemock/include"/>
+					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googlemock"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 TP8"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="TP8/fast">
+				<Option output="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/TP8.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googletest/include"/>
+					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googletest"/>
+					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googlemock/include"/>
+					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googlemock"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 TP8/fast"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="rebuild_cache">
 				<Option working_dir="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug"/>
 				<Option type="4"/>
@@ -722,6 +772,15 @@
 		<Unit filename="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP7/ex2.cpp">
 			<Option target="TP7"/>
 		</Unit>
+		<Unit filename="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP8/TestAux.cpp">
+			<Option target="TP8"/>
+		</Unit>
+		<Unit filename="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP8/TestAux.h">
+			<Option target="TP8"/>
+		</Unit>
+		<Unit filename="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP8/ex1.cpp">
+			<Option target="TP8"/>
+		</Unit>
 		<Unit filename="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googlemock/src/gmock-all.cc">
 			<Option target="gmock"/>
 		</Unit>
@@ -742,6 +801,7 @@
 			<Option target="TP5"/>
 			<Option target="TP6"/>
 			<Option target="TP7"/>
+			<Option target="TP8"/>
 		</Unit>
 		<Unit filename="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
