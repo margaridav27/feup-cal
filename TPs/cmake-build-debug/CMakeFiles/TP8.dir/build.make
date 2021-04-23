@@ -131,10 +131,10 @@ TP8.exe: CMakeFiles/TP8.dir/main.cpp.obj
 TP8.exe: CMakeFiles/TP8.dir/TP8/TestAux.cpp.obj
 TP8.exe: CMakeFiles/TP8.dir/TP8/ex1.cpp.obj
 TP8.exe: CMakeFiles/TP8.dir/build.make
-TP8.exe: lib/libgtest_maind.a
-TP8.exe: lib/libgmock_maind.a
-TP8.exe: lib/libgmockd.a
-TP8.exe: lib/libgtestd.a
+TP8.exe: lib/libgtest_maind.dll.a
+TP8.exe: lib/libgmock_maind.dll.a
+TP8.exe: lib/libgmockd.dll.a
+TP8.exe: lib/libgtestd.dll.a
 TP8.exe: CMakeFiles/TP8.dir/linklibs.rsp
 TP8.exe: CMakeFiles/TP8.dir/objects1.rsp
 TP8.exe: CMakeFiles/TP8.dir/link.txt

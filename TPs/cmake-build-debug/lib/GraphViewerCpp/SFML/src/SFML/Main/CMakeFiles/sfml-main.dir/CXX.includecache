@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../lib/GraphViewerCpp/SFML/include/SFML/Config.hpp
+TargetConditionals.h
+../lib/GraphViewerCpp/SFML/include/SFML/TargetConditionals.h
+
+C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/GraphViewerCpp/SFML/src/SFML/Main/MainWin32.cpp
+SFML/Config.hpp
+-
+windows.h
+-
+

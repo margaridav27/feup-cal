@@ -526,6 +526,28 @@ cxxabi.h
 acxx_demangle.h
 -
 
+C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP2/ex1.cpp
+exercises.h
+C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP2/exercises.h
+iostream
+-
+gtest/gtest.h
+-
+
+C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP2/ex2.cpp
+exercises.h
+C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP2/exercises.h
+iostream
+-
+gtest/gtest.h
+-
+
+C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP2/ex3.cpp
+exercises.h
+C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP2/exercises.h
+gtest/gtest.h
+-
+
 C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP2/ex4.cpp
 exercises.h
 C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP2/exercises.h
@@ -537,4 +559,10 @@ gmock/gmock.h
 C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/TP2/exercises.h
 vector
 -
+
+C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/main.cpp
+iostream
+-
+gtest/gtest.h
+C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/gtest/gtest.h
 
