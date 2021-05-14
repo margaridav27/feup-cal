@@ -38,7 +38,7 @@ int kmpMatcher(std::string text, std::string pattern) {
     return counter;
 }
 
-int numStringMatching(std::string filename, std::string toSearch) {
+int numStringMatching(const std::string& filename, const std::string& toSearch) {
     std::ifstream istream(filename);
     if (!istream.is_open()) {
         std::cerr << "Failed to open the file.\n";
