@@ -7,13 +7,13 @@
 std::vector<int> computePrefix(std::string pattern) {
     int m = pattern.length();
     std::vector<int> occurences;
-    occurences.at(0) = 0;
+    occurences.push_back(-1);
     int k = -1;
 
-    for (int i = 1; i < m; ++i) {
-        while (k > 0 && pattern.at(k + 1) != pattern.at(i)) k = occurences.at(k);
-        if (pattern.at(k + 1) == pattern.at(i)) k++;
-        occurences.at(i) = k;
+    for (int q = 1; q < m; q++) {
+        while (k > -1 && pattern[k + 1] != pattern[q]) k = occurences[k];
+        if (pattern[k + 1] == pattern[q]) k++;
+        occurences.push_back(k);
     }
 
     return occurences;
@@ -24,20 +24,21 @@ int kmpMatcher(std::string text, std::string pattern) {
     int m = pattern.length();
     std::vector<int> occurences = computePrefix(pattern);
     int q = -1;
+    int counter = 0;
 
-    for (int i = 0; i < n; ++i) {
-        while (q > 0 && pattern.at(q + 1) != text.at(i)) {
-            q = occurences.at(q);
-            if (pattern.at(q + 1) == text.at(i)) q++;
-            if (q == m) q = occurences.at(q);
+    for (int i = 0; i < n; i++) {
+        while (q > -1 && pattern[q + 1] != text[i]) q = occurences[q];
+        if (pattern[q + 1] == text[i]) q++;
+        if (q == m - 1) {
+            counter++;
+            q = occurences[q];
         }
-
     }
 
-    return q;
+    return counter;
 }
 
-int numStringMatching(const std::string &filename, const std::string &toSearch) {
+int numStringMatching(std::string filename, std::string toSearch) {
     std::ifstream istream(filename);
     if (!istream.is_open()) {
         std::cerr << "Failed to open the file.\n";
@@ -46,8 +47,7 @@ int numStringMatching(const std::string &filename, const std::string &toSearch) 
 
     int counter = 0;
     std::string text;
-    while (!istream.eof()) {
-        istream >> text;
+    while (getline(istream, text, '\n')) {
         counter += kmpMatcher(text, toSearch);
     }
 

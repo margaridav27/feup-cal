@@ -5,7 +5,7 @@
 
 // Ex 1
 int kmpMatcher(std::string text, std::string pattern);
-int numStringMatching(const std::string& filename, const std::string& toSearch);
+int numStringMatching(std::string filename, std::string toSearch);
 
 // Ex 2
 int editDistance(std::string pattern, std::string text);
