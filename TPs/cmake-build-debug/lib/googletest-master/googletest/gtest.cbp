@@ -18,13 +18,12 @@
 				</MakeCommands>
 			</Target>
 			<Target title="gtest">
-				<Option output="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/bin/libgtestd.dll" prefix_auto="0" extension_auto="0"/>
+				<Option output="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/lib/libgtestd.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/lib/googletest-master/googletest"/>
 				<Option object_output="./"/>
-				<Option type="3"/>
+				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-DGTEST_CREATE_SHARED_LIBRARY=1"/>
 					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googletest/include"/>
 					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googletest"/>
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
@@ -42,13 +41,12 @@
 				</MakeCommands>
 			</Target>
 			<Target title="gtest/fast">
-				<Option output="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/bin/libgtestd.dll" prefix_auto="0" extension_auto="0"/>
+				<Option output="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/lib/libgtestd.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/lib/googletest-master/googletest"/>
 				<Option object_output="./"/>
-				<Option type="3"/>
+				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-DGTEST_CREATE_SHARED_LIBRARY=1"/>
 					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googletest/include"/>
 					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googletest"/>
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
@@ -66,13 +64,12 @@
 				</MakeCommands>
 			</Target>
 			<Target title="gtest_main">
-				<Option output="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/bin/libgtest_maind.dll" prefix_auto="0" extension_auto="0"/>
+				<Option output="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/lib/libgtest_maind.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/lib/googletest-master/googletest"/>
 				<Option object_output="./"/>
-				<Option type="3"/>
+				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-DGTEST_CREATE_SHARED_LIBRARY=1"/>
 					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googletest/include"/>
 					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googletest"/>
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
@@ -90,13 +87,12 @@
 				</MakeCommands>
 			</Target>
 			<Target title="gtest_main/fast">
-				<Option output="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/bin/libgtest_maind.dll" prefix_auto="0" extension_auto="0"/>
+				<Option output="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/lib/libgtest_maind.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/cmake-build-debug/lib/googletest-master/googletest"/>
 				<Option object_output="./"/>
-				<Option type="3"/>
+				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-DGTEST_CREATE_SHARED_LIBRARY=1"/>
 					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googletest/include"/>
 					<Add directory="C:/Users/Margarida Viera/Desktop/FEUP 2Y2S/CAL/feup-cal/TPs/lib/googletest-master/googletest"/>
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>

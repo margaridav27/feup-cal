@@ -14,6 +14,7 @@ float numApproximateStringMatching(std::string filename, std::string toSearch) {
     return 0.0;
 }
 
+
 /// TESTS ///
 #include <gtest/gtest.h>
 

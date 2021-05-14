@@ -114,10 +114,10 @@ TP9_EXTERNAL_OBJECTS =
 TP9.exe: CMakeFiles/TP9.dir/main.cpp.obj
 TP9.exe: CMakeFiles/TP9.dir/TP9/ex1.cpp.obj
 TP9.exe: CMakeFiles/TP9.dir/build.make
-TP9.exe: lib/libgtest_maind.dll.a
-TP9.exe: lib/libgmock_maind.dll.a
-TP9.exe: lib/libgmockd.dll.a
-TP9.exe: lib/libgtestd.dll.a
+TP9.exe: lib/libgtest_maind.a
+TP9.exe: lib/libgmock_maind.a
+TP9.exe: lib/libgmockd.a
+TP9.exe: lib/libgtestd.a
 TP9.exe: CMakeFiles/TP9.dir/linklibs.rsp
 TP9.exe: CMakeFiles/TP9.dir/objects1.rsp
 TP9.exe: CMakeFiles/TP9.dir/link.txt
